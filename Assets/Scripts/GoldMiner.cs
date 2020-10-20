@@ -8,6 +8,8 @@ public class GoldMiner : MonoBehaviour {
 
     int goldMiners;
     public int price = 100;
+    public int productionTime = 1;
+    public int productionGold = 1;
     public TMP_Text goldMinerTxt;
     public TMP_Text buttonTxt;
     public Button buyButton;
@@ -32,7 +34,6 @@ public class GoldMiner : MonoBehaviour {
     }
     public void HoverOverButton () {
         _hoverOverButton = !_hoverOverButton;
-        Debug.Log (_hoverOverButton);
     }
 
     public void BuyItem () {
@@ -41,19 +42,18 @@ public class GoldMiner : MonoBehaviour {
             AddGoldMiner ();
         }
     }
-    public void buyIndicator () {
+    void buyIndicator () {
         if (_hoverOverButton) {
             if (CanBuyItem) {
-                changeButtonColor (Color.green, Color.grey);
+                changeButtonColor (Color.green);
             } else {
-                changeButtonColor (Color.red, Color.magenta);
+                changeButtonColor (Color.red);
             }
         }
     }
-    void changeButtonColor (Color newPressedColor, Color highlightedColor) {
+    void changeButtonColor (Color newPressedColor) {
         ColorBlock newColorBlock = buyButton.colors;
         newColorBlock.pressedColor = newPressedColor;
-        newColorBlock.highlightedColor = highlightedColor;
         buyButton.colors = newColorBlock;
     }
     public void AddGoldMiner () {
@@ -61,8 +61,8 @@ public class GoldMiner : MonoBehaviour {
         goldMinerTxt.text = goldMiners.ToString ("Gold miners: 0");
     }
     void MiningGold () {
-        if (Time.time - timeDelay >= 1) {
-            FindObjectOfType<Gold> ().ItemProducedGold (goldMiners);
+        if (Time.time - timeDelay >= productionTime) {
+            FindObjectOfType<Gold> ().ItemProducedGold (goldMiners * productionGold);
             timeDelay = Time.time + 1;
         }
     }
