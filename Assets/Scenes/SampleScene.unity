@@ -476,10 +476,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011926aa4266e4448bec0cba35aa2656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldMiners: 0
   price: 100
+  productionTime: 1
+  productionGold: 1
   goldMinerTxt: {fileID: 1042707375}
   buttonTxt: {fileID: 1784103740}
   buyButton: {fileID: 2005076561}
+  _hoverOverButton: 0
+  timeDelay: 1
 --- !u!1 &1042707373
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Buy Miner for: 100gold'
+  m_text: 'Buy Gold Miner: 100gold'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -944,7 +949,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1784103740}
-    characterCount: 22
+    characterCount: 23
     spriteCount: 0
     spaceCount: 3
     wordCount: 4
@@ -1093,7 +1098,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
     m_PressedColor: {r: 0.22590709, g: 1, b: 0, a: 1}
     m_SelectedColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}

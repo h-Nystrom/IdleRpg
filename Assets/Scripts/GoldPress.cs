@@ -1,32 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GoldMiner : MonoBehaviour {
-
-    int goldMiners;
+[System.Serializable]
+public class GoldPress : MonoBehaviour {
+    public string name;
     public int price = 100;
     public int productionTime = 1;
     public int productionGold = 1;
-    public TMP_Text goldMinerTxt;
+    public TMP_Text goldGeneratorTxt;
     public TMP_Text buttonTxt;
     public Button buyButton;
+    int _goldGenerators;
     bool _hoverOverButton;
     float timeDelay = 1;
+
     void Start () {
-        goldMiners = PlayerPrefs.GetInt ("savedMiners", 0);
-        goldMinerTxt.text = goldMiners.ToString ("Gold miners: 0");
-        buttonTxt.text = $"Buy Gold miner: {price} gold";
+        GoldGenerators = PlayerPrefs.GetInt ("savedGenerators", 0);
+        goldGeneratorTxt.text = GoldGenerators.ToString ($"{name}: 0");
+        buttonTxt.text = $"Buy {name}: {price} gold";
     }
     void OnDestroy () {
-        PlayerPrefs.SetInt ("savedMiners", goldMiners);
+        PlayerPrefs.SetInt ("savedGenerators", GoldGenerators);
     }
     public bool CanBuyItem { get => FindObjectOfType<Gold> ().GoldAmount >= price; }
-    public int GoldMiners { get => goldMiners; }
+    public int GoldGenerators { get => _goldGenerators; set => _goldGenerators = value; }
     void Update () {
-        if (goldMiners == 0)
+        if (GoldGenerators == 0)
             return;
 
         MiningGold ();
@@ -57,12 +57,12 @@ public class GoldMiner : MonoBehaviour {
         buyButton.colors = newColorBlock;
     }
     public void AddGoldMiner () {
-        goldMiners++;
-        goldMinerTxt.text = goldMiners.ToString ("Gold miners: 0");
+        GoldGenerators++;
+        goldGeneratorTxt.text = GoldGenerators.ToString ($"{name}: 0");
     }
     void MiningGold () {
         if (Time.time - timeDelay >= productionTime) {
-            FindObjectOfType<Gold> ().ItemProducedGold (goldMiners * productionGold);
+            FindObjectOfType<Gold> ().ItemProducedGold (GoldGenerators * productionGold);
             timeDelay = Time.time + 1;
         }
     }
