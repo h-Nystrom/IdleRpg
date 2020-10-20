@@ -6,26 +6,31 @@ using UnityEngine;
 public class Gold : MonoBehaviour {
     public int goldEarnedByClick = 5;
     public TMP_Text goldText;
-    int gold;
+    int _goldAmount;
 
     void Start () {
-        gold = PlayerPrefs.GetInt ("savedGold", 0);
-        goldText.text = gold.ToString ("Gold: 0");
+        _goldAmount = PlayerPrefs.GetInt ("savedGold", 0);
+        goldText.text = _goldAmount.ToString ("Gold: 0");
     }
     void OnDestroy () {
-        PlayerPrefs.SetInt ("savedGold", gold);
+        PlayerPrefs.SetInt ("savedGold", _goldAmount);
     }
-    public int CurrentGold { get => gold; }
+    public int GoldAmount {
+        get => _goldAmount;
+        set {
+            _goldAmount = value;
+            goldText.text = _goldAmount.ToString ("Gold: 0");
+        }
+    }
     public void PlayerProducedGold () {
-        gold += goldEarnedByClick;
-        goldText.text = gold.ToString ("Gold: 0");
+        GoldAmount += goldEarnedByClick;
+        goldText.text = GoldAmount.ToString ("Gold: 0");
     }
     public void ItemProducedGold (int amount) {
-        gold += amount;
-        goldText.text = gold.ToString ("Gold: 0");
+        GoldAmount += amount;
+        goldText.text = GoldAmount.ToString ("Gold: 0");
     }
     public void SpendGold (int cost) {
-        gold -= cost;
-        goldText.text = gold.ToString ("Gold: 0");
+        GoldAmount -= cost;
     }
 }
