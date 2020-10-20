@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 797348140}
   - component: {fileID: 797348139}
   m_Layer: 5
-  m_Name: GoldMinerButton (1)
+  m_Name: BuyBankButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,12 +545,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1876547722}
-  m_Father: {fileID: 2005076560}
-  m_RootOrder: 1
+  m_Father: {fileID: 1735702802}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: 322.5}
   m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &797348139
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011cbe31118ea2c4d8a5eb9d2cac3065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buyButton: {fileID: 2005076561}
+  _hoverOverButton: 0
 --- !u!114 &842929016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,19 +816,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842929012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f00c5628c277f64fb0af31aacd8ceb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldGeneratorTxt: {fileID: 1042707375}
-  buttonTxt: {fileID: 1784103740}
-  item:
-    name: Name
-    price: 100
-    productionTime: 1
-    productionAmount: 1
-    buyButton: {fileID: 2005076559}
+--- !u!114 &842929017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842929012}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4f63177f1ed4c49a0ea65bcd64eb1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldGeneratorTxt:
+  - {fileID: 1042707375}
+  - {fileID: 2121815814}
+  buttonTxt:
+  - {fileID: 1784103740}
+  - {fileID: 1876547723}
 --- !u!1 &1042707373
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'GoldMiners: 0'
+  m_text: 'GoldMiners: 0-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -961,7 +971,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1042707375}
-    characterCount: 13
+    characterCount: 14
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -1155,6 +1165,7 @@ RectTransform:
   m_Children:
   - {fileID: 1706933569}
   - {fileID: 2005076560}
+  - {fileID: 797348138}
   m_Father: {fileID: 800844326}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1394,7 +1405,7 @@ GameObject:
   - component: {fileID: 1876547724}
   - component: {fileID: 1876547723}
   m_Layer: 5
-  m_Name: BuyGoldMiner
+  m_Name: BuyBankButtonTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1567,7 +1578,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1784103738}
-  - {fileID: 797348138}
   m_Father: {fileID: 1735702802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1726,7 +1736,7 @@ GameObject:
   - component: {fileID: 2121815815}
   - component: {fileID: 2121815814}
   m_Layer: 5
-  m_Name: Bank
+  m_Name: Bank_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1771,7 +1781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bank: 0'
+  m_text: 'Bank: 0-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1845,7 +1855,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2121815814}
-    characterCount: 7
+    characterCount: 8
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -1876,7 +1886,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: item.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: goldGeneratorTxt
@@ -1922,6 +1932,26 @@ PrefabInstance:
       propertyPath: item.Array.data[0].buyButton
       value: 
       objectReference: {fileID: 2005076559}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: item.Array.data[1].name
+      value: Bank
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: item.Array.data[1].price
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: item.Array.data[1].productionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: item.Array.data[1].productionAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: item.Array.data[1].buyButton
+      value: 
+      objectReference: {fileID: 797348137}
     - target: {fileID: 3647151459391179202, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: m_Name
       value: GoldPress
