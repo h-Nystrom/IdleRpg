@@ -1,69 +1,26 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-
-[System.Serializable]
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 public class GoldPress : MonoBehaviour {
-    public string name;
-    public int price = 100;
-    public int productionTime = 1;
-    public int productionGold = 1;
-    public TMP_Text goldGeneratorTxt;
-    public TMP_Text buttonTxt;
-    public Button buyButton;
-    int _goldGenerators;
-    bool _hoverOverButton;
-    float timeDelay = 1;
 
-    void Start () {
-        GoldGenerators = PlayerPrefs.GetInt ("savedGenerators", 0);
-        goldGeneratorTxt.text = GoldGenerators.ToString ($"{name}: 0");
-        buttonTxt.text = $"Buy {name}: {price} gold";
-    }
-    void OnDestroy () {
-        PlayerPrefs.SetInt ("savedGenerators", GoldGenerators);
-    }
-    public bool CanBuyItem { get => FindObjectOfType<Gold> ().GoldAmount >= price; }
-    public int GoldGenerators { get => _goldGenerators; set => _goldGenerators = value; }
-    void Update () {
-        if (GoldGenerators == 0)
-            return;
+    public Item[] item;
+    bool _canBuyItem;
+    string _buttonName;
 
-        MiningGold ();
-        buyIndicator ();
+    public string ButtonName { get => _buttonName; set => _buttonName = value; }
+    public bool CanBuyItem { get => _canBuyItem; }
+    public void BuyItem (int index) {
+        item[index].GoldGenerators++;
+        GetComponent<GoldMining> ().UpdateText ();
+        FindObjectOfType<Gold> ().SpendGold (item[index].price);
+        Debug.Log (item[index].Id);
     }
-    public void HoverOverButton () {
-        _hoverOverButton = !_hoverOverButton;
-    }
-
-    public void BuyItem () {
-        if (CanBuyItem) {
-            FindObjectOfType<Gold> ().SpendGold (price);
-            AddGoldMiner ();
-        }
-    }
-    void buyIndicator () {
-        if (_hoverOverButton) {
-            if (CanBuyItem) {
-                changeButtonColor (Color.green);
-            } else {
-                changeButtonColor (Color.red);
+    public void CheckBuyItem (bool buy) {
+        for (int i = 0; i < item.Length; i++) {
+            if (ButtonName == item[i].buyButton.name) {
+                _canBuyItem = FindObjectOfType<Gold> ().GoldAmount >= item[i].price;
+                if (buy && CanBuyItem)
+                    BuyItem (i);
             }
-        }
-    }
-    void changeButtonColor (Color newPressedColor) {
-        ColorBlock newColorBlock = buyButton.colors;
-        newColorBlock.pressedColor = newPressedColor;
-        buyButton.colors = newColorBlock;
-    }
-    public void AddGoldMiner () {
-        GoldGenerators++;
-        goldGeneratorTxt.text = GoldGenerators.ToString ($"{name}: 0");
-    }
-    void MiningGold () {
-        if (Time.time - timeDelay >= productionTime) {
-            FindObjectOfType<Gold> ().ItemProducedGold (GoldGenerators * productionGold);
-            timeDelay = Time.time + 1;
         }
     }
 }
