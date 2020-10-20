@@ -12,6 +12,9 @@ public class GoldMiner : MonoBehaviour {
         goldMiners = PlayerPrefs.GetInt ("savedMiners");
         goldMinerTxt.text = goldMiners.ToString ("Gold miners: 0");
     }
+    void OnDestroy () {
+        PlayerPrefs.SetInt ("savedMiners", goldMiners);
+    }
     void Update () {
         if (goldMiners > 0) {
             MiningGold ();
@@ -28,7 +31,7 @@ public class GoldMiner : MonoBehaviour {
     public void AddGoldMiner () {
         goldMiners++;
         goldMinerTxt.text = goldMiners.ToString ("Gold miners: 0");
-        PlayerPrefs.SetInt ("savedMiners", goldMiners);
+
     }
     void MiningGold () {
 

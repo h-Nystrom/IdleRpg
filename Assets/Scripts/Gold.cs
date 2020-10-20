@@ -12,18 +12,16 @@ public class Gold : MonoBehaviour {
         gold = PlayerPrefs.GetInt ("savedGold");
         goldText.text = gold.ToString ("Gold: 0");
     }
+    void OnDestroy () {
+        PlayerPrefs.SetInt ("savedGold", gold);
+    }
     public int CurrentGold { get => gold; }
     public void ProduceGold () {
         gold += goldEarnedByClick;
-        UpdateGold ();
+        goldText.text = gold.ToString ("Gold: 0");
     }
     public void SpendGold (int cost) {
         gold -= cost;
-        UpdateGold ();
-    }
-    void UpdateGold () {
         goldText.text = gold.ToString ("Gold: 0");
-        PlayerPrefs.SetInt ("savedGold", gold);
     }
-
 }
