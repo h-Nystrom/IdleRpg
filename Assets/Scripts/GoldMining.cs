@@ -7,7 +7,7 @@ public class GoldMining : MonoBehaviour {
     public enum MiningGoldpurchasableProduct {
         GoldMiner,
         Bank,
-        ChangeNameWhenAdded2,
+        Marketplace,
         ChangeNameWhenAdded3,
         ChangeNameWhenAdded4
     }
