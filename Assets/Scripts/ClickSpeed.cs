@@ -9,7 +9,7 @@ public class ClickSpeed : MonoBehaviour {
 
         if (Time.time - timeDelay >= 1) {
             timeDelay = Time.time + 1;
-            text.text = $"{clicks}clicks/s";
+            text.text = $"Clicks/s:{clicks}";
             clicks = 0;
         } else {
             if (Input.GetMouseButtonDown (0)) {

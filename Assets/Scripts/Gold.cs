@@ -28,7 +28,7 @@ public class Gold : MonoBehaviour {
         Vector3 offset = new Vector3 (Random.Range (-10, 10), Random.Range (-10, 10), 0);
         goldUI.SpawnGoldText (Input.mousePosition + offset, goldEarnedByClick, false);
     }
-    public void PurchasableProductProducedGold (int amount, Vector3 position) {
+    public void UnitProducedGold (int amount, Vector3 position) {
         GoldAmount += amount;
         goldText.text = goldText.text = $"Gold: {GoldAmount} ({goldEarnedByClick}gold/Click)";
         Vector3 offset = new Vector3 (Random.Range (-100, 100), Random.Range (-5, 5), 0);

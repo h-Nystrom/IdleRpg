@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- clicks/s'
+  m_text: 'Clicks/s: -'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -345,15 +345,15 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
+  m_fontSize: 27.55
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 275614969}
-    characterCount: 10
+    characterCount: 11
     spriteCount: 0
     spaceCount: 1
     wordCount: 3
@@ -425,11 +425,11 @@ RectTransform:
   m_Father: {fileID: 1735702802}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -10}
-  m_SizeDelta: {x: 170, y: 50}
-  m_Pivot: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 10}
+  m_SizeDelta: {x: 120, y: 40}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &279523624
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +684,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 4374427267689744567, guid: 0bc629547b0eecf43b911d1f7b3af005, type: 3}
+--- !u!1 &721904869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721904870}
+  - component: {fileID: 721904871}
+  m_Layer: 0
+  m_Name: GoldProductionUnitsParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &721904870
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721904869}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1735702802}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 0}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &721904871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721904869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: -15
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 15
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 1
+  m_ReverseArrangement: 0
 --- !u!1 &797348137
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &797348138
 RectTransform:
   m_ObjectHideFlags: 0
@@ -741,7 +803,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: HoverOverButton
           m_Mode: 3
@@ -753,7 +815,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: GetButton
           m_Mode: 2
@@ -769,7 +831,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: HoverOverButton
           m_Mode: 3
@@ -824,7 +886,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 842929013}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
         m_MethodName: BuypurchasableProducts
         m_Mode: 3
@@ -973,17 +1035,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &842929013 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-  m_PrefabInstance: {fileID: 2067551104979778035}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f652114c3465f4ba8b2bd425269a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &936968721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &936968722
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1041,7 +1092,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: HoverOverButton
           m_Mode: 3
@@ -1053,7 +1104,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: GetButton
           m_Mode: 2
@@ -1069,7 +1120,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: HoverOverButton
           m_Mode: 3
@@ -1124,7 +1175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 842929013}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
         m_MethodName: BuypurchasableProducts
         m_Mode: 3
@@ -1191,7 +1242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1042707374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1345,7 +1396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1646148084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1511,7 +1562,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1735702802}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1713,6 +1764,7 @@ RectTransform:
   - {fileID: 797348138}
   - {fileID: 936968722}
   - {fileID: 275614971}
+  - {fileID: 721904870}
   - {fileID: 1673653692}
   m_Father: {fileID: 800844326}
   m_RootOrder: 0
@@ -2113,7 +2165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2005076560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2177,7 +2229,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 842929013}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
         m_MethodName: BuypurchasableProducts
         m_Mode: 3
@@ -2244,7 +2296,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: HoverOverButton
           m_Mode: 3
@@ -2256,7 +2308,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: GetButton
           m_Mode: 2
@@ -2272,7 +2324,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 842929013}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
           m_MethodName: HoverOverButton
           m_Mode: 3
@@ -2301,7 +2353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2121815813
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2438,131 +2490,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121815812}
   m_CullTransparentMesh: 0
---- !u!1001 &2067551104979778035
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[0].buttonTxtPosition
-      value: 
-      objectReference: {fileID: 2005076560}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[1].buttonTxtPosition
-      value: 
-      objectReference: {fileID: 797348138}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[2].buttonTxtPosition
-      value: 
-      objectReference: {fileID: 936968722}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[1].procentageincreasePerGenerator
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[2].procentageincreasePerGenerator
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[1].productionAmount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[1].startPrice
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[2].startPrice
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[1].name
-      value: Marketplace
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[2].name
-      value: Bank
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: purchasableProducts.Array.data[1].productionTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 842929017, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: goldGeneratorTxt.Array.data[0]
-      value: 
-      objectReference: {fileID: 1042707375}
-    - target: {fileID: 842929017, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: goldGeneratorTxt.Array.data[1]
-      value: 
-      objectReference: {fileID: 2121815814}
-    - target: {fileID: 842929017, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: goldGeneratorTxt.Array.data[2]
-      value: 
-      objectReference: {fileID: 1646148085}
-    - target: {fileID: 842929017, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: buttonTxt.Array.data[0]
-      value: 
-      objectReference: {fileID: 1784103740}
-    - target: {fileID: 842929017, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: buttonTxt.Array.data[1]
-      value: 
-      objectReference: {fileID: 1876547723}
-    - target: {fileID: 842929017, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: buttonTxt.Array.data[2]
-      value: 
-      objectReference: {fileID: 279523626}
-    - target: {fileID: 3647151459391179202, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_Name
-      value: GoldPress
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805282572812212688, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
 --- !u!1001 &3833206499150932335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2635,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gold
       objectReference: {fileID: 0}
+    - target: {fileID: 2765247710066924778, guid: 67f70b57725e5bf4b8e6305e5daad51c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3246437163234734351, guid: 67f70b57725e5bf4b8e6305e5daad51c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2683,5 +2614,126 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 138532830}
+    - target: {fileID: 7741067284235070757, guid: 67f70b57725e5bf4b8e6305e5daad51c, type: 3}
+      propertyPath: goldEarnedByClick
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741067284235070757, guid: 67f70b57725e5bf4b8e6305e5daad51c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f70b57725e5bf4b8e6305e5daad51c, type: 3}
+--- !u!1001 &8951190541514649104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnitPrefab
+      value: 
+      objectReference: {fileID: 1893979100678636931, guid: 0a1ec638216fccb4e80fabe35e5ee0ef, type: 3}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnitParent
+      value: 
+      objectReference: {fileID: 721904870}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: unitParent
+      value: 
+      objectReference: {fileID: 721904870}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[3].name
+      value: Unit_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[3].startPrice
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[3].productionTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[3].percentageIncrease
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[3].productionAmount
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[4].name
+      value: Unit_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[4].startPrice
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[4].productionTime
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[4].percentageIncrease
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239505010493786334, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: goldProductionUnits.Array.data[4].productionAmount
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537753654458371635, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914675967352577569, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}
+      propertyPath: m_Name
+      value: GoldProductionUnits
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95d670491d8a89e489d0c5dec1e94f0e, type: 3}

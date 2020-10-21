@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5914675967352577569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4537753654458371635}
+  - component: {fileID: 3239505010493786334}
+  m_Layer: 0
+  m_Name: GoldProductionUnits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4537753654458371635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914675967352577569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3239505010493786334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914675967352577569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05306345ca3ffd469f07b9a8b587de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldProductionUnits:
+  - name: Unit_1
+    startPrice: 100
+    productionTime: 1
+    percentageIncrease: 10
+    productionAmount: 1
+  - name: Unit_2
+    startPrice: 500
+    productionTime: 5
+    percentageIncrease: 20
+    productionAmount: 10
+  - name: Unit_3
+    startPrice: 1000
+    productionTime: 10
+    percentageIncrease: 50
+    productionAmount: 100
+  goldProductionUnitParent: {fileID: 0}
+  goldProductionUnitPrefab: {fileID: 0}

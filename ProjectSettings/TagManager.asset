@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Canvas
   - IgnoreRayCast
+  - Layout
   layers:
   - Default
   - TransparentFX

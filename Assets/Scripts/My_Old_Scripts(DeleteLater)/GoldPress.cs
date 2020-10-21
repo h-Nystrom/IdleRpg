@@ -5,27 +5,27 @@ using UnityEngine.UI;
 [RequireComponent (typeof (UpdateGoldPressUI))]
 public class GoldPress : MonoBehaviour {
 
-    public PurchasableProduct[] purchasableProducts;
+    public GoldProductionUnit[] goldProductionUnits;
     public bool _hoverOverButton;
-    bool _canBuyPurchasableProducts;
+    bool _canBuyGoldProductionUnit;
 
     UpdateGoldPressUI updateGoldPressUI;
     Button buyButton;
     int hoverButtonIndex;
-    public bool CanBuyPurchasableProducts { get => _canBuyPurchasableProducts; }
+    public bool CanBuyGoldProductionUnit { get => _canBuyGoldProductionUnit; }
     void Start () {
         updateGoldPressUI = GetComponent<UpdateGoldPressUI> ();
     }
     void Update () {
         buyIndicator ();
     }
-    public void BuypurchasableProducts (int index) {
+    public void BuyGoldProductionUnit (int index) {
 
-        if (CanBuyPurchasableProducts) {
-            FindObjectOfType<Gold> ().SpendGold (purchasableProducts[index].CurrentPrice);
-            purchasableProducts[index].GoldGenerators++;
+        if (CanBuyGoldProductionUnit) {
+            FindObjectOfType<Gold> ().SpendGold (goldProductionUnits[index].CurrentPrice);
+            goldProductionUnits[index].GoldGenerators++;
             if (updateGoldPressUI != null) {
-                updateGoldPressUI.UpdateText (index, purchasableProducts[index]);
+                updateGoldPressUI.UpdateText (index, goldProductionUnits[index]);
             }
         }
     }
@@ -41,8 +41,8 @@ public class GoldPress : MonoBehaviour {
     }
     void buyIndicator () {
         if (_hoverOverButton && hoverButtonIndex != 100) {
-            _canBuyPurchasableProducts = FindObjectOfType<Gold> ().GoldAmount >= purchasableProducts[hoverButtonIndex].CurrentPrice;
-            if (CanBuyPurchasableProducts) {
+            _canBuyGoldProductionUnit = FindObjectOfType<Gold> ().GoldAmount >= goldProductionUnits[hoverButtonIndex].CurrentPrice;
+            if (CanBuyGoldProductionUnit) {
                 changeButtonColor (Color.green);
             } else {
                 changeButtonColor (Color.red);
