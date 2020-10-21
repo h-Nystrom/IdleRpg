@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f11d004d460b9542ba5da19b6be73c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldText: {fileID: 2782242745003378952, guid: 197791e52a614d747b3870cf5a2d2e05, type: 3}
+  goldText: {fileID: 4374427267689744567, guid: 0bc629547b0eecf43b911d1f7b3af005, type: 3}
 --- !u!1 &797348137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,7 +2459,7 @@ PrefabInstance:
       objectReference: {fileID: 936968722}
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: purchasableProducts.Array.data[1].procentageincreasePerGenerator
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: purchasableProducts.Array.data[2].procentageincreasePerGenerator
@@ -2467,7 +2467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: purchasableProducts.Array.data[1].productionAmount
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: purchasableProducts.Array.data[1].startPrice

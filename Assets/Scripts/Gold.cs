@@ -25,16 +25,18 @@ public class Gold : MonoBehaviour {
     public void PlayerProducedGold () {
         GoldAmount += goldEarnedByClick;
         goldText.text = GoldAmount.ToString ("Gold: 0");
-        goldUI.SpawnGoldText (Input.mousePosition, goldEarnedByClick, Color.yellow);
+        Vector3 offset = new Vector3 (Random.Range (-10, 10), Random.Range (-10, 10), 0);
+        goldUI.SpawnGoldText (Input.mousePosition + offset, goldEarnedByClick, false);
     }
     public void PurchasableProductProducedGold (int amount, Vector3 position) {
         GoldAmount += amount;
         goldText.text = GoldAmount.ToString ("Gold: 0");
-        goldUI.SpawnGoldText (position, amount, Color.yellow);
+        Vector3 offset = new Vector3 (Random.Range (-100, 100), Random.Range (-5, 5), 0);
+        goldUI.SpawnGoldText (position + offset, amount, false);
     }
     public void SpendGold (int cost) {
         GoldAmount -= cost;
-        goldUI.SpawnGoldText (Input.mousePosition, -cost, Color.red);
+        goldUI.SpawnGoldText (Input.mousePosition, -cost, true);
 
     }
 }
