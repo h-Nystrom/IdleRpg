@@ -11,7 +11,7 @@ public class UpdateGoldPressUI : MonoBehaviour {
         int i = 0;
         foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
             purchasableProduct.GoldGenerators = PlayerPrefs.GetInt (purchasableProduct.name, 0);
-            goldGeneratorTxt[i].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+            goldGeneratorTxt[i].text = $"{purchasableProduct.name}: {purchasableProduct.GoldGenerators} ({purchasableProduct.CurrentProductionAmount}gold/{purchasableProduct.productionTime}s)";
             buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.CurrentPrice} gold";
             i++;
         }
@@ -22,7 +22,7 @@ public class UpdateGoldPressUI : MonoBehaviour {
             int i = 0;
             foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
                 purchasableProduct.GoldGenerators = PlayerPrefs.GetInt (purchasableProduct.name, 0);
-                goldGeneratorTxt[i].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+                goldGeneratorTxt[i].text = $"{purchasableProduct.name}: {purchasableProduct.GoldGenerators} ({purchasableProduct.CurrentProductionAmount}gold/{purchasableProduct.productionTime}s)";
                 buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.CurrentPrice} gold";
                 i++;
             }
@@ -39,7 +39,8 @@ public class UpdateGoldPressUI : MonoBehaviour {
         }
     }
     public void UpdateText (int index, PurchasableProduct purchasableProduct) {
-        goldGeneratorTxt[index].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+        //goldGeneratorTxt[index].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+        goldGeneratorTxt[index].text = $"{purchasableProduct.name}: {purchasableProduct.GoldGenerators} ({purchasableProduct.CurrentProductionAmount}gold/{purchasableProduct.productionTime}s)";
         buttonTxt[index].text = $"Buy {purchasableProduct.name}: {purchasableProduct.CurrentPrice} gold";
     }
 }
