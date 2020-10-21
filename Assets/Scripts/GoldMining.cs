@@ -20,7 +20,7 @@ public class GoldMining : MonoBehaviour {
     }
     void MiningGold (PurchasableProduct purchasableProduct) {
         if (Time.time - timeDelay >= purchasableProduct.productionTime) {
-            FindObjectOfType<Gold> ().PurchasableProductProducedGold (purchasableProduct.GoldGenerators * purchasableProduct.productionAmount);
+            FindObjectOfType<Gold> ().PurchasableProductProducedGold (purchasableProduct.GoldGenerators * purchasableProduct.productionAmount, purchasableProduct.buttonTxtPosition.position);
             timeDelay = Time.time + purchasableProduct.productionTime;
         }
     }

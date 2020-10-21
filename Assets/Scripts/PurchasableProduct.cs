@@ -10,6 +10,8 @@ public class PurchasableProduct {
     int _goldGenerators = 0;
     public int Id { get => _id; }
 
+    public Transform buttonTxtPosition;
+
     public PurchasableProduct () {
         _id++;
     }
