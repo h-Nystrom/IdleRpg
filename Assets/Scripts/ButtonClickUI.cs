@@ -6,30 +6,30 @@ using UnityEngine.UI;
 public class ButtonClickUI : MonoBehaviour {
     Button buyButton;
     public bool _hoverOverButton;
-    bool canBuyItem;
+    bool canBuyPurchasableProduct;
     void Update () {
         buyIndicator ();
     }
     public void ButtonPress (Button button) {
-
-        GetComponent<GoldPress> ().CheckBuyItem (true, button.name);
-
+        //GetComponent<GoldPress> ().CheckBuyItem (true, button.name);
+        buyButton = button;
+        canBuyPurchasableProduct = GetComponent<GoldPress> ().CanBuyPurchasableProducts;
     }
     public void HoverOverButton (Button button) {
         _hoverOverButton = !_hoverOverButton;
         if (_hoverOverButton) {
-            GetComponent<GoldPress> ().CheckBuyItem (false, button.name);
+            buyButton = button;
 
-            canBuyItem = GetComponent<GoldPress> ().CanBuyItem;
         } else {
-            GetComponent<GoldPress> ().CheckBuyItem (false, null);
-            canBuyItem = false;
+            canBuyPurchasableProduct = false;
+            buyButton = null;
         }
-        buyButton = button;
+
     }
     void buyIndicator () {
         if (_hoverOverButton) {
-            if (canBuyItem) {
+            //GetComponent<GoldPress> ().CheckBuyItem (false, buyButton.name);
+            if (canBuyPurchasableProduct) {
                 changeButtonColor (Color.green);
             } else {
                 changeButtonColor (Color.red);

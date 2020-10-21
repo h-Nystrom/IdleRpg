@@ -1,22 +1,28 @@
 ﻿using UnityEngine;
 public class GoldMining : MonoBehaviour {
     float timeDelay = 1;
-
-    Item[] items;
+    [HideInInspector]
+    public PurchasableProduct purchasableProduct;
+    public MiningGoldpurchasableProduct miningGoldpurchasableProduct;
+    public enum MiningGoldpurchasableProduct {
+        GoldMiner,
+        Bank,
+        ChangeNameWhenAdded2,
+        ChangeNameWhenAdded3,
+        ChangeNameWhenAdded4
+    }
     void Start () {
-        items = GetComponent<GoldPress> ().item;
+        purchasableProduct = FindObjectOfType<GoldPress> ().purchasableProducts[(int) miningGoldpurchasableProduct];
     }
     void Update () {
-        if (items[0].GoldGenerators != 0)
-            MiningGold (items[0]);
-        if (items[1].GoldGenerators != 0)
-            MiningGold (items[1]);
+        if (purchasableProduct.GoldGenerators != 0)
+            MiningGold (purchasableProduct);
     }
-    void MiningGold (Item item) {
-        if (Time.time - timeDelay >= item.productionTime) {
-            FindObjectOfType<Gold> ().ItemProducedGold (item.GoldGenerators * item.productionAmount);
-            timeDelay = Time.time + 1;
-            Debug.Log (item.name);
+    void MiningGold (PurchasableProduct purchasableProduct) {
+        if (Time.time - timeDelay >= purchasableProduct.productionTime) {
+            FindObjectOfType<Gold> ().PurchasableProductProducedGold (purchasableProduct.GoldGenerators * purchasableProduct.productionAmount);
+            timeDelay = Time.time + purchasableProduct.productionTime;
+            Debug.Log (purchasableProduct.name);
         }
     }
 }

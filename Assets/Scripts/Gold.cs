@@ -24,7 +24,7 @@ public class Gold : MonoBehaviour {
         GoldAmount += goldEarnedByClick;
         goldText.text = GoldAmount.ToString ("Gold: 0");
     }
-    public void ItemProducedGold (int amount) {
+    public void PurchasableProductProducedGold (int amount) {
         GoldAmount += amount;
         goldText.text = GoldAmount.ToString ("Gold: 0");
     }

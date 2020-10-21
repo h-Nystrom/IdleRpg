@@ -6,12 +6,13 @@ using UnityEngine;
 public class UpdateUI : MonoBehaviour {
     public TMP_Text[] goldGeneratorTxt;
     public TMP_Text[] buttonTxt;
+
     void Start () {
         int i = 0;
-        foreach (Item item in GetComponent<GoldPress> ().item) {
-            item.GoldGenerators = PlayerPrefs.GetInt (item.name, 0);
-            goldGeneratorTxt[i].text = item.GoldGenerators.ToString ($"{item.name}: 0");
-            buttonTxt[i].text = $"Buy {item.name}: {item.price} gold";
+        foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
+            purchasableProduct.GoldGenerators = PlayerPrefs.GetInt (purchasableProduct.name, 0);
+            goldGeneratorTxt[i].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+            buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.price} gold";
             i++;
         }
     }
@@ -19,25 +20,25 @@ public class UpdateUI : MonoBehaviour {
         if (Input.GetKeyDown (KeyCode.Q)) {
             PlayerPrefs.DeleteAll ();
             int i = 0;
-            foreach (Item item in GetComponent<GoldPress> ().item) {
-                item.GoldGenerators = PlayerPrefs.GetInt (item.name, 0);
-                goldGeneratorTxt[i].text = item.GoldGenerators.ToString ($"{item.name}: 0");
-                buttonTxt[i].text = $"Buy {item.name}: {item.price} gold";
+            foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
+                purchasableProduct.GoldGenerators = PlayerPrefs.GetInt (purchasableProduct.name, 0);
+                goldGeneratorTxt[i].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+                buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.price} gold";
                 i++;
             }
         }
         if (Input.GetKeyDown (KeyCode.W)) {
-            foreach (Item item in GetComponent<GoldPress> ().item) {
-                Debug.Log (item.name + " " + PlayerPrefs.GetInt (item.name, item.GoldGenerators));
+            foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
+                Debug.Log (purchasableProduct.name + " " + PlayerPrefs.GetInt (purchasableProduct.name, purchasableProduct.GoldGenerators));
             }
         }
     }
     void OnDestroy () {
-        foreach (Item item in GetComponent<GoldPress> ().item) {
-            PlayerPrefs.SetInt (item.name, item.GoldGenerators);
+        foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
+            PlayerPrefs.SetInt (purchasableProduct.name, purchasableProduct.GoldGenerators);
         }
     }
-    public void UpdateText (int index, Item item) {
-        goldGeneratorTxt[index].text = item.GoldGenerators.ToString ($"{item.name}: 0");
+    public void UpdateText (int index, PurchasableProduct purchasableProduct) {
+        goldGeneratorTxt[index].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
     }
 }

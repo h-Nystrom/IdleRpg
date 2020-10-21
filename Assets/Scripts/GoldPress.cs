@@ -1,33 +1,57 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
+[RequireComponent (typeof (UpdateUI))]
 public class GoldPress : MonoBehaviour {
 
-    public Item[] item;
-    [HideInInspector]
-    bool _canBuyItem;
-    public bool CanBuyItem { get => _canBuyItem; }
+    public PurchasableProduct[] purchasableProducts;
+    public bool _hoverOverButton;
+    bool _canBuyPurchasableProducts;
+
     UpdateUI updateUI;
+    Button buyButton;
+    int hoverButtonIndex;
+    public bool CanBuyPurchasableProducts { get => _canBuyPurchasableProducts; }
     void Start () {
         updateUI = GetComponent<UpdateUI> ();
     }
-    public void BuyItem (int index) {
-        item[index].GoldGenerators++;
-        if (updateUI != null) {
-            updateUI.UpdateText (index, item[index]);
-        }
-        FindObjectOfType<Gold> ().SpendGold (item[index].price);
+    void Update () {
+        buyIndicator ();
     }
-    public void CheckBuyItem (bool buy, string buttonName) {
+    public void BuypurchasableProducts (int index) {
 
-        for (int i = 0; i < item.Length; i++) {
-            if (buttonName == item[i].buyButton.name) {
-                _canBuyItem = FindObjectOfType<Gold> ().GoldAmount >= item[i].price;
-                if (buy && CanBuyItem) {
-                    BuyItem (i);
-                }
-
+        if (CanBuyPurchasableProducts) {
+            purchasableProducts[index].GoldGenerators++;
+            if (updateUI != null) {
+                updateUI.UpdateText (index, purchasableProducts[index]);
+            }
+            FindObjectOfType<Gold> ().SpendGold (purchasableProducts[index].price);
+        }
+    }
+    public void GetButton (Button button) {
+        buyButton = button;
+    }
+    public void HoverOverButton (int index) {
+        _hoverOverButton = !_hoverOverButton;
+        if (_hoverOverButton)
+            hoverButtonIndex = index;
+        else
+            hoverButtonIndex = 100;
+    }
+    void buyIndicator () {
+        if (_hoverOverButton && hoverButtonIndex != 100) {
+            _canBuyPurchasableProducts = FindObjectOfType<Gold> ().GoldAmount >= purchasableProducts[hoverButtonIndex].price;
+            if (CanBuyPurchasableProducts) {
+                changeButtonColor (Color.green);
+            } else {
+                changeButtonColor (Color.red);
             }
         }
+    }
+    void changeButtonColor (Color highLightedColor) {
+        ColorBlock colorBlock = buyButton.colors;
+        colorBlock.highlightedColor = highLightedColor;
+        buyButton.colors = colorBlock;
     }
 }
