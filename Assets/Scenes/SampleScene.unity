@@ -655,7 +655,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 842929013}
         m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
-        m_MethodName: BuyItem
+        m_MethodName: BuypurchasableProducts
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1629,7 +1629,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 842929013}
         m_TargetAssemblyTypeName: GoldPress, Assembly-CSharp
-        m_MethodName: BuyItem
+        m_MethodName: BuypurchasableProducts
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1938,9 +1938,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 676507755309003756, guid: d3cc5d39c51e7a74190d8c5d89fa6dfb, type: 3}
+      propertyPath: miningGoldpurchasableProduct
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 676507755309003757, guid: d3cc5d39c51e7a74190d8c5d89fa6dfb, type: 3}
       propertyPath: m_Name
-      value: Generators
+      value: GoldPressGenerators
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3cc5d39c51e7a74190d8c5d89fa6dfb, type: 3}
@@ -1953,6 +1957,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: item.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
@@ -2019,6 +2027,38 @@ PrefabInstance:
       propertyPath: item.Array.data[1].buyButton
       value: 
       objectReference: {fileID: 797348137}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[0].name
+      value: Gold miner
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[0].price
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[0].productionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[0].productionAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[1].name
+      value: Bank
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[1].price
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[1].productionTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 842929013, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
+      propertyPath: purchasableProducts.Array.data[1].productionAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3647151459391179202, guid: c0d3fa3d2cddd77439c183caab245acf, type: 3}
       propertyPath: m_Name
       value: GoldPress

@@ -2,19 +2,19 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent (typeof (UpdateUI))]
+[RequireComponent (typeof (UpdateGoldPressUI))]
 public class GoldPress : MonoBehaviour {
 
     public PurchasableProduct[] purchasableProducts;
     public bool _hoverOverButton;
     bool _canBuyPurchasableProducts;
 
-    UpdateUI updateUI;
+    UpdateGoldPressUI updateGoldPressUI;
     Button buyButton;
     int hoverButtonIndex;
     public bool CanBuyPurchasableProducts { get => _canBuyPurchasableProducts; }
     void Start () {
-        updateUI = GetComponent<UpdateUI> ();
+        updateGoldPressUI = GetComponent<UpdateGoldPressUI> ();
     }
     void Update () {
         buyIndicator ();
@@ -23,8 +23,8 @@ public class GoldPress : MonoBehaviour {
 
         if (CanBuyPurchasableProducts) {
             purchasableProducts[index].GoldGenerators++;
-            if (updateUI != null) {
-                updateUI.UpdateText (index, purchasableProducts[index]);
+            if (updateGoldPressUI != null) {
+                updateGoldPressUI.UpdateText (index, purchasableProducts[index]);
             }
             FindObjectOfType<Gold> ().SpendGold (purchasableProducts[index].price);
         }

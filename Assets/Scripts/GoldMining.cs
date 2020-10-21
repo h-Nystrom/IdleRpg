@@ -22,7 +22,6 @@ public class GoldMining : MonoBehaviour {
         if (Time.time - timeDelay >= purchasableProduct.productionTime) {
             FindObjectOfType<Gold> ().PurchasableProductProducedGold (purchasableProduct.GoldGenerators * purchasableProduct.productionAmount);
             timeDelay = Time.time + purchasableProduct.productionTime;
-            Debug.Log (purchasableProduct.name);
         }
     }
 }

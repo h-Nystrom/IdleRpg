@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-[RequireComponent (typeof (UpdateUI))]
-public class UpdateUI : MonoBehaviour {
+[RequireComponent (typeof (GoldPress))]
+public class UpdateGoldPressUI : MonoBehaviour {
     public TMP_Text[] goldGeneratorTxt;
     public TMP_Text[] buttonTxt;
 
