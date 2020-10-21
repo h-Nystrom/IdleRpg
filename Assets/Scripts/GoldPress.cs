@@ -22,11 +22,11 @@ public class GoldPress : MonoBehaviour {
     public void BuypurchasableProducts (int index) {
 
         if (CanBuyPurchasableProducts) {
+            FindObjectOfType<Gold> ().SpendGold (purchasableProducts[index].CurrentPrice);
             purchasableProducts[index].GoldGenerators++;
             if (updateGoldPressUI != null) {
                 updateGoldPressUI.UpdateText (index, purchasableProducts[index]);
             }
-            FindObjectOfType<Gold> ().SpendGold (purchasableProducts[index].price);
         }
     }
     public void GetButton (Button button) {
@@ -41,7 +41,7 @@ public class GoldPress : MonoBehaviour {
     }
     void buyIndicator () {
         if (_hoverOverButton && hoverButtonIndex != 100) {
-            _canBuyPurchasableProducts = FindObjectOfType<Gold> ().GoldAmount >= purchasableProducts[hoverButtonIndex].price;
+            _canBuyPurchasableProducts = FindObjectOfType<Gold> ().GoldAmount >= purchasableProducts[hoverButtonIndex].CurrentPrice;
             if (CanBuyPurchasableProducts) {
                 changeButtonColor (Color.green);
             } else {

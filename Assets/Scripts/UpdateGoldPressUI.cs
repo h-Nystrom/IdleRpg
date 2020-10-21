@@ -12,7 +12,7 @@ public class UpdateGoldPressUI : MonoBehaviour {
         foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
             purchasableProduct.GoldGenerators = PlayerPrefs.GetInt (purchasableProduct.name, 0);
             goldGeneratorTxt[i].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
-            buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.price} gold";
+            buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.CurrentPrice} gold";
             i++;
         }
     }
@@ -23,7 +23,7 @@ public class UpdateGoldPressUI : MonoBehaviour {
             foreach (PurchasableProduct purchasableProduct in GetComponent<GoldPress> ().purchasableProducts) {
                 purchasableProduct.GoldGenerators = PlayerPrefs.GetInt (purchasableProduct.name, 0);
                 goldGeneratorTxt[i].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
-                buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.price} gold";
+                buttonTxt[i].text = $"Buy {purchasableProduct.name}: {purchasableProduct.CurrentPrice} gold";
                 i++;
             }
         }
@@ -40,5 +40,6 @@ public class UpdateGoldPressUI : MonoBehaviour {
     }
     public void UpdateText (int index, PurchasableProduct purchasableProduct) {
         goldGeneratorTxt[index].text = purchasableProduct.GoldGenerators.ToString ($"{purchasableProduct.name}: 0");
+        buttonTxt[index].text = $"Buy {purchasableProduct.name}: {purchasableProduct.CurrentPrice} gold";
     }
 }

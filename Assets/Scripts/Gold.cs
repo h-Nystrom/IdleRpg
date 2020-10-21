@@ -35,5 +35,6 @@ public class Gold : MonoBehaviour {
     public void SpendGold (int cost) {
         GoldAmount -= cost;
         goldUI.SpawnGoldText (Input.mousePosition, -cost, Color.red);
+
     }
 }
