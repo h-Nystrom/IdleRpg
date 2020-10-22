@@ -9,7 +9,7 @@ public class GoldProductionUnits : MonoBehaviour {
     void Start () {
         foreach (var productionUnit in this.goldProductionUnits) {
             var instance = Instantiate (goldProductionUnitPrefab, unitParent);
-            instance.GetComponent<GoldProductionSetup> ().SetUp (productionUnit);
+            instance.GetComponent<GoldProductionScript> ().SetUp (productionUnit);
         }
     }
 }
