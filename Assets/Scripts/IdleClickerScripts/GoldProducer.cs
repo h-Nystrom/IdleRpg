@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GoldProductionScript : MonoBehaviour {
-    public GoldProductionUnit goldProductionUnit;
+public class GoldProducer : MonoBehaviour {
+    public GoldProductionData goldProductionUnit;
     public TMP_Text goldAmountText;
     public TMP_Text purchaseButtonLabel;
     public Button buyButton;
@@ -12,15 +12,15 @@ public class GoldProductionScript : MonoBehaviour {
     bool _canBuyUnit;
     bool _hoverOverButton;
     public bool CanBuyUnit { get => _canBuyUnit; }
-    public void SetUp (GoldProductionUnit goldProductionUnit) {
+    public void SetUp (GoldProductionData goldProductionUnit) {
         this.goldProductionUnit = goldProductionUnit;
         this.gameObject.name = goldProductionUnit.name;
-        this.goldProductionUnit.GoldGenerators = PlayerPrefs.GetInt (goldProductionUnit.name, 0);
+        this.goldProductionUnit.GoldGenerators = PlayerPrefs.GetInt (goldProductionUnit.name + goldProductionUnit.ID, 0);
         this.purchaseButtonLabel.text = $"Purchase price: {goldProductionUnit.CurrentPrice}gold";
         this.goldAmountText.text = $"{goldProductionUnit.name}: {goldProductionUnit.GoldGenerators}";
     }
     void OnDestroy () {
-        PlayerPrefs.SetInt (goldProductionUnit.name, goldProductionUnit.GoldGenerators);
+        PlayerPrefs.SetInt (goldProductionUnit.name + goldProductionUnit.ID, goldProductionUnit.GoldGenerators);
     }
     void Update () {
         if (goldProductionUnit.GoldGenerators > 0) {
