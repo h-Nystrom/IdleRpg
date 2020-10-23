@@ -4,11 +4,10 @@ using UnityEngine;
 [RequireComponent (typeof (GoldUI))]
 public class Gold : MonoBehaviour {
     public int goldEarnedByClick = 5;
-    TMP_Text goldText;
+    public TMP_Text goldText;
     int _goldAmount;
     GoldUI goldUI;
     void Start () {
-        goldText = GetComponent<TMP_Text> ();
         _goldAmount = PlayerPrefs.GetInt ("savedGold", 0);
         goldText.text = $"Gold: {GoldAmount} ({goldEarnedByClick}gold/Click)";
         goldUI = GetComponent<GoldUI> ();
