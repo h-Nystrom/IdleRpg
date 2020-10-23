@@ -8,6 +8,7 @@ public class GoldProductionScript : MonoBehaviour {
     public TMP_Text purchaseButtonLabel;
     public Button buyButton;
     float timeDelay;
+    bool _startProduction;
     bool _canBuyUnit;
     bool _hoverOverButton;
     public bool CanBuyUnit { get => _canBuyUnit; }
@@ -17,20 +18,26 @@ public class GoldProductionScript : MonoBehaviour {
         this.goldProductionUnit.GoldGenerators = PlayerPrefs.GetInt (goldProductionUnit.name, 0);
         this.purchaseButtonLabel.text = $"Purchase price: {goldProductionUnit.CurrentPrice}gold";
         this.goldAmountText.text = $"{goldProductionUnit.name}: {goldProductionUnit.GoldGenerators}";
-        this.timeDelay = goldProductionUnit.productionTime;
     }
     void OnDestroy () {
         PlayerPrefs.SetInt (goldProductionUnit.name, goldProductionUnit.GoldGenerators);
     }
     void Update () {
-        if (goldProductionUnit.GoldGenerators != 0)
+        if (goldProductionUnit.GoldGenerators > 0) {
+            StartProduction ();
             MiningGold ();
+        }
 
         buyIndicator ();
     }
+    void StartProduction () {
+        if (timeDelay > 0)
+            return;
+        timeDelay = Time.time + goldProductionUnit.productionTime;
+    }
     void MiningGold () {
         if (Time.time - timeDelay >= goldProductionUnit.productionTime) {
-            FindObjectOfType<Gold> ().UnitProducedGold (goldProductionUnit.GoldGenerators * goldProductionUnit.productionAmount, purchaseButtonLabel.transform.position);
+            FindObjectOfType<Gold> ().UnitProducedGold (goldProductionUnit.CurrentProductionAmount, purchaseButtonLabel.transform.position);
             timeDelay = Time.time + goldProductionUnit.productionTime;
         }
     }

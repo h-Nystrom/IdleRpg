@@ -9,11 +9,9 @@ public class GoldProductionUnit {
     public int productionAmount = 1;
     int _goldGenerators = 0;
 
-    public float PercentToDecimal { get => (percentageIncrease * 0.01f) + 1; }
+    float PercentToDecimal { get => (percentageIncrease * 0.01f) + 1; }
     public int CurrentPrice { get => (int) (startPrice * Mathf.Pow (PercentToDecimal, _goldGenerators)); }
-    public int CurrentProductionAmount {
-        get => productionAmount * _goldGenerators;
-    }
+    public int CurrentProductionAmount { get => (int) (productionAmount * Mathf.Pow (PercentToDecimal, _goldGenerators)); }
     public int GoldGenerators {
         get => _goldGenerators;
         set => _goldGenerators = value;
