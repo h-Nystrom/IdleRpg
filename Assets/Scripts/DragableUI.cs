@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragableUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler {
+public class DragableUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
     public Transform dragingUI;
     public Transform endOfDragUI;
     CanvasGroup canvasGroup;
@@ -13,7 +13,7 @@ public class DragableUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     }
     public void OnBeginDrag (PointerEventData eventData) {
         transform.SetParent (dragingUI);
-        transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
+        transform.localScale = Vector3.one;
         canvasGroup.alpha = 0.4f;
         canvasGroup.blocksRaycasts = false;
     }
@@ -23,25 +23,15 @@ public class DragableUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     }
 
     public void OnEndDrag (PointerEventData eventData) {
-        if (endOfDragUI.tag == "Inventory")
-            transform.localScale = Vector3.one;
-        if (endOfDragUI.tag == "Tile")
+        if (endOfDragUI.tag == "Tile") {
             transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-
-        transform.SetParent (endOfDragUI);
-        canvasGroup.blocksRaycasts = true;
-        canvasGroup.alpha = 1f;
-    }
-
-    public void OnPointerEnter (PointerEventData eventData) {
-        if (eventData.pointerEnter.gameObject.tag == "BattleField") {
-            Debug.Log ("BattleField on");
+            transform.SetParent (endOfDragUI);
+            canvasGroup.blocksRaycasts = true;
+            canvasGroup.alpha = 1f;
+            this.enabled = false;
+        } else {
+            Destroy (gameObject);
         }
-    }
 
-    public void OnPointerExit (PointerEventData eventData) {
-        if (eventData.pointerEnter.gameObject.tag == "BattleField") {
-            Debug.Log ("BattleField off");
-        }
     }
 }

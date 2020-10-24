@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent (typeof (FindTarget))]
 public class Unit : MonoBehaviour {
 
     //Unit Data:
@@ -20,7 +21,16 @@ public class Unit : MonoBehaviour {
     bool chargingAttack;
     float attackDelay;
     FindTarget attackTarget;
-
+    Transform parentTile;
+    public void SetupUnit (Transform parentTile) {
+        this.parentTile = parentTile;
+        transform.SetParent (this.parentTile);
+        transform.position = this.parentTile.position;
+        this.parentTile.GetComponent<Tile> ().InUse = true;
+        transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+        GetComponent<CanvasGroup> ().blocksRaycasts = true;
+        GetComponent<CanvasGroup> ().alpha = 1;
+    }
     void Start () {
         attackTarget = GetComponent<FindTarget> ();
     }

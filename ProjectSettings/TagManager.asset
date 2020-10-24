@@ -7,6 +7,12 @@ TagManager:
   - Canvas
   - IgnoreRayCast
   - Layout
+  - BattleField
+  - Inventory
+  - Tile
+  - Gold
+  - Unit
+  - Tile_Enemy
   layers:
   - Default
   - TransparentFX
