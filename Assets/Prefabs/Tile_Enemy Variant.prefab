@@ -7,17 +7,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.06392128
+      objectReference: {fileID: 0}
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.046540882
+      objectReference: {fileID: 0}
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6918479805716566938, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
     - target: {fileID: 6446700913772514858, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
       propertyPath: m_Color.r
-      value: 0.7176471
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6446700913772514858, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
       propertyPath: m_Color.g
-      value: 0.067300715
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6446700913772514858, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6842521667719067998, guid: 89a89fed3a047b7408c09d86d87a37bc, type: 3}
       propertyPath: m_LocalPosition.x
