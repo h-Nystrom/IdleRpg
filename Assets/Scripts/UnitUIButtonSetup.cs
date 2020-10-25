@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UnitUIButtonSetup : MonoBehaviour {
-    public Transform draggableObjectParent;
     public GameObject UnitUIPrefab;
     DraggingUnit draggingUnitScript;
     const int maxIndex = 6; //Change to scriptableobject array later!
@@ -14,8 +11,7 @@ public class UnitUIButtonSetup : MonoBehaviour {
     void SetUpButtons () {
         for (int i = 0; i <= maxIndex; i++) {
             GameObject UnitUIButton = Instantiate (UnitUIPrefab, this.transform);
-            UnitUIButton.GetComponent<SpawnUnit> ().parent = draggableObjectParent;
-            UnitUIButton.GetComponent<SpawnUnit> ().draggingUnit = draggingUnitScript;
+            UnitUIButton.GetComponent<MoveUnit> ().draggingUnit = draggingUnitScript;
         }
     }
 }

@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 [RequireComponent (typeof (FindTarget))]
 public class Unit : MonoBehaviour {
 
     //Unit Data:
-    public string name = "unit name";
+    public string unitName = "unit name";
     public int health = 100;
     public int blockChance = 10;
+    public UnitType unitType;
+    public enum UnitType {
+        Melee,
+        Range,
+        Hero
+    }
 
     //Weapon Data:
     public int damage = 10;
@@ -21,17 +28,19 @@ public class Unit : MonoBehaviour {
     bool chargingAttack;
     float attackDelay;
     FindTarget attackTarget;
-    Transform parentTile;
-    public void SetupUnit (Transform parentTile) {
-        this.parentTile = parentTile;
-        transform.SetParent (this.parentTile);
-        transform.position = this.parentTile.position;
-        this.parentTile.GetComponent<Tile> ().InUse = true;
-        transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+    Transform parentLane;
+    public TMP_Text nameTxt;
+    public void SetupUnit (Transform parentLane, int index) {
+        this.parentLane = parentLane;
+        transform.SetParent (this.parentLane);
+        transform.SetSiblingIndex (index);
+
+        transform.position = this.parentLane.position;
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
-        GetComponent<CanvasGroup> ().alpha = 1;
+        parentLane.GetComponent<Lane> ().UpdateArray ();
     }
     void Start () {
+        nameTxt.text = $"Warrior {Random.Range(0, 101)}";
         attackTarget = GetComponent<FindTarget> ();
     }
     bool HasTarget => attackTarget.value != null;

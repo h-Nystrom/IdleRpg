@@ -169,7 +169,9 @@ GameObject:
   - component: {fileID: 1449781324832231722}
   - component: {fileID: -8528850314152864904}
   - component: {fileID: 5404435879111011018}
-  - component: {fileID: 4078908551998817500}
+  - component: {fileID: 1807010039901624678}
+  - component: {fileID: -5372802922563281446}
+  - component: {fileID: 7443952536492138482}
   m_Layer: 5
   m_Name: Unit
   m_TagString: Unit
@@ -186,7 +188,7 @@ RectTransform:
   m_GameObject: {fileID: 5986343429429627385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.36330608, y: 0.36330608, z: 0.36330608}
   m_Children:
   - {fileID: 6292504254180428364}
   m_Father: {fileID: 0}
@@ -195,8 +197,8 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 200}
-  m_Pivot: {x: 0.5, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5986343429429627334
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -243,7 +245,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5986343429429627385}
   m_Enabled: 1
-  m_Alpha: 0.5
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -259,9 +261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb93711da0e55574482a61522b95f052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: unit name
+  unitName: unit name
   health: 100
   blockChance: 10
+  unitType: 0
   damage: 10
   CritChance: 10
   attackSpeed: 2
@@ -269,6 +272,7 @@ MonoBehaviour:
   blockableAttack: 0
   splash: 0
   poisen: 0
+  nameTxt: {fileID: 4894813717651810950}
 --- !u!114 &5404435879111011018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +286,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: {fileID: 0}
---- !u!114 &4078908551998817500
+--- !u!114 &1807010039901624678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986343429429627385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 200
+  m_PreferredWidth: 200
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &-5372802922563281446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,4 +318,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34793f4920a620f4e92b4d5801368358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnUnit: {fileID: 0}
+  DraggingUnit: {fileID: 0}
+--- !u!114 &7443952536492138482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986343429429627385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f543fed383e3f44458f30688c334821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 0}
+  parent: {fileID: 0}
+  draggingUnit: {fileID: 0}
+  testMin: 20
+  testMax: 20

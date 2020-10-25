@@ -12,6 +12,9 @@ TagManager:
   - Tile
   - Gold
   - Unit
+  - Melee
+  - Range
+  - Commander
   - Tile_Enemy
   layers:
   - Default
@@ -22,7 +25,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Tile
   - 
   - 
   - 

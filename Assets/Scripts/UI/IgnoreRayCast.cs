@@ -12,9 +12,9 @@ public class IgnoreRayCast : MonoBehaviour {
         DraggingUnit.OnDraggingUnit -= OnDraggingUnit;
     }
     void OnDraggingUnit (bool InUse) {
-        Debug.Log ("EventStart" + InUse);
+        //Debug.Log ("EventStart" + InUse);
         if (InUse) {
-            GetComponent<CanvasGroup> ().alpha = 0.5f;
+            GetComponent<CanvasGroup> ().alpha = 0.9f;
             GetComponent<CanvasGroup> ().blocksRaycasts = false;
         } else {
             GetComponent<CanvasGroup> ().alpha = 1f;
