@@ -19,7 +19,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         if (unitPrefab != null) {
             newUnit = Instantiate (unitPrefab, parent);
         } else {
-            CalculateSiblingIndex (eventData.position.y, this.transform.parent.position.y);
+            CalculateSiblingIndex (eventData.pointerEnter.transform.position.y, this.transform.parent.position.y);
             newUnit = this.gameObject;
             OldParent = this.transform.parent;
             transform.SetParent (parent);

@@ -12,29 +12,33 @@ public class Unit : MonoBehaviour {
     public enum UnitType {
         Melee,
         Range,
+        Support,
+        Scavanger,
         Hero
     }
 
     //Weapon Data:
     public int damage = 10;
+    [Range (0, 2)]
+    public int weaponRange = 1;
     public int CritChance = 10;
     public float attackSpeed = 2;
-    public bool rangedWeapon = false;
     public bool blockableAttack = false;
     public bool splash;
     public bool poisen;
-
+    float attackRate; //Weapon attackRate
     //All
     bool chargingAttack;
-    float attackDelay;
     FindTarget attackTarget;
     Transform parentLane;
     public TMP_Text nameTxt;
+    public int AttackRange {
+        get => weaponRange;
+    }
     public void SetupUnit (Transform parentLane, int index) {
         this.parentLane = parentLane;
         transform.SetParent (this.parentLane);
         transform.SetSiblingIndex (index);
-
         transform.position = this.parentLane.position;
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
         parentLane.GetComponent<Lane> ().UpdateArray ();
@@ -51,11 +55,11 @@ public class Unit : MonoBehaviour {
         }
     }
     void ChargingAttack () {
-        if (attackDelay == 0)
-            attackDelay = Time.time;
-        if (Time.time - attackDelay > attackSpeed) {
+        if (attackRate == 0)
+            attackRate = Time.time;
+        if (Time.time - attackRate > attackSpeed) {
             Attack ();
-            attackDelay = Time.time;
+            attackRate = Time.time;
         }
     }
     public void Attack () {
