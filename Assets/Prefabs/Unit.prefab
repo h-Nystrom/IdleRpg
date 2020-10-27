@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: -8528850314152864904}
   - component: {fileID: 5404435879111011018}
   - component: {fileID: 1807010039901624678}
-  - component: {fileID: -5372802922563281446}
   - component: {fileID: 7443952536492138482}
   m_Layer: 5
   m_Name: Unit
@@ -266,9 +265,9 @@ MonoBehaviour:
   blockChance: 10
   unitType: 0
   damage: 10
+  weaponRange: 1
   CritChance: 10
   attackSpeed: 2
-  rangedWeapon: 0
   blockableAttack: 0
   splash: 0
   poisen: 0
@@ -287,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   lanes: []
+  positionIndex: 0
   playerControlled: 1
   playerSelectedTarget: 0
 --- !u!114 &1807010039901624678
@@ -309,19 +309,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &-5372802922563281446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5986343429429627385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34793f4920a620f4e92b4d5801368358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DraggingUnit: {fileID: 0}
 --- !u!114 &7443952536492138482
 MonoBehaviour:
   m_ObjectHideFlags: 0

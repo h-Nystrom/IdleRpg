@@ -28,12 +28,22 @@ public class Unit : MonoBehaviour {
     public bool poisen;
     float attackRate; //Weapon attackRate
     //All
+    bool isAlive;
     bool chargingAttack;
     FindTarget attackTarget;
     Transform parentLane;
     public TMP_Text nameTxt;
     public int AttackRange {
         get => weaponRange;
+    }
+    public bool IsAlive {
+        get {
+            if (health > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
     public void SetupUnit (Transform parentLane, int index) {
         this.parentLane = parentLane;

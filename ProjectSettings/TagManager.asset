@@ -13,9 +13,8 @@ TagManager:
   - Gold
   - Unit
   - Melee
-  - Range
   - Commander
-  - Tile_Enemy
+  - CombatLane
   layers:
   - Default
   - TransparentFX

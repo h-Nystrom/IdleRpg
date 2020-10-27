@@ -7,7 +7,6 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public Transform parent;
     public DraggingUnit draggingUnit;
     GameObject newUnit;
-    String unitType;
     bool canSpawnNewUnit;
     Transform OldParent;
     int SiblingIndex;
@@ -18,6 +17,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public void OnBeginDrag (PointerEventData eventData) {
         if (unitPrefab != null) {
             newUnit = Instantiate (unitPrefab, parent);
+            newUnit.AddComponent<IgnoreRayCast> ();
         } else {
             CalculateSiblingIndex (eventData.pointerEnter.transform.position.y, this.transform.parent.position.y);
             newUnit = this.gameObject;
@@ -26,7 +26,6 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             OldParent.GetComponent<Lane> ().UpdateArray ();
         }
         newUnit.GetComponent<FindTarget> ().enemy = null;
-        unitType = newUnit.GetComponent<Unit> ().unitType.ToString ();
         draggingUnit.IsDraggingUnit (true);
     }
     public void OnDrag (PointerEventData eventData) {
@@ -34,7 +33,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     }
     public void OnEndDrag (PointerEventData eventData) {
         if (eventData.pointerEnter != null) {
-            if (eventData.pointerEnter.transform.tag != unitType || eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
+            if (eventData.pointerEnter.transform.tag != "CombatLane" || eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
                 ResetUnitPosition ();
             } else {
                 CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);

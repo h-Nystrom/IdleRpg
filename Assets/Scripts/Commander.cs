@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Hero : MonoBehaviour {
+public class Commander : MonoBehaviour {
     //Click on opponent to deal dmg. 
     //Gain combos by clicking on enemy units ex. > 10clicks/s.
     //Click on own units to select them.
