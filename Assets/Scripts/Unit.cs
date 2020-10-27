@@ -40,10 +40,10 @@ public class Unit : MonoBehaviour {
         parentLane.GetComponent<Lane> ().UpdateArray ();
     }
     void Start () {
-        nameTxt.text = $"Warrior {Random.Range(0, 101)}";
+        nameTxt.text = $"Warrior {Random.Range(0, 101)}"; //Change to name
         attackTarget = GetComponent<FindTarget> ();
     }
-    bool HasTarget => attackTarget.value != null;
+    bool HasTarget => attackTarget.enemy != null;
 
     void Update () {
         if (HasTarget) {
@@ -62,7 +62,7 @@ public class Unit : MonoBehaviour {
         //Calculate:
         //Block, crit, dmg
 
-        Debug.Log ("Attacking!", this.gameObject);
+        Debug.Log ($"Attacking {attackTarget.enemy.GetComponent<Unit>().nameTxt.text}!");
     }
     public void TakeDamage (int damage) {
         //Calculate health:

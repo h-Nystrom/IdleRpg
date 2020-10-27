@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
 public class Hero : MonoBehaviour {
-    // Start is called before the first frame update
+    //Click on opponent to deal dmg. 
+    //Gain combos by clicking on enemy units ex. > 10clicks/s.
+    //Click on own units to select them.
+    //Click on Items to collect them into your inventory.
+
     void Start () {
 
     }

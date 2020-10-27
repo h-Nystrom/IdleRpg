@@ -197,7 +197,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 200, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5986343429429627334
 CanvasRenderer:
@@ -285,7 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afecb0104831a94ab38d46b13e2b28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: {fileID: 0}
+  enemy: {fileID: 0}
+  lanes: []
+  playerControlled: 1
+  playerSelectedTarget: 0
 --- !u!114 &1807010039901624678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 200
+  m_MinHeight: 220
   m_PreferredWidth: 200
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -334,5 +337,3 @@ MonoBehaviour:
   unitPrefab: {fileID: 0}
   parent: {fileID: 0}
   draggingUnit: {fileID: 0}
-  testMin: 20
-  testMax: 20

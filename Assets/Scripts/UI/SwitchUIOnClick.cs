@@ -10,10 +10,10 @@ public class SwitchUIOnClick : MonoBehaviour {
         _switchUI = !_switchUI;
         if (_switchUI) {
             itemUI.SetActive (true);
-            buttonTxt.text = "Item";
+            buttonTxt.text = "Units";
         } else {
             itemUI.SetActive (false);
-            buttonTxt.text = "Unit";
+            buttonTxt.text = "Items";
         }
     }
 }
