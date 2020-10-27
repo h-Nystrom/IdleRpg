@@ -3,10 +3,20 @@
 public class Lane : MonoBehaviour {
 
     public Unit[] units;
+    public Lane[] OpponentsLanes = new Lane[3];
     public int maxUnits = 3;
     bool _isFull;
     public bool IsFull {
         get => _isFull;
+    }
+    public void UpdateOpponentsLanes () {
+        if (OpponentsLanes.Length == 0) {
+            Debug.Log ("Missing Opponents lanes");
+            return;
+        }
+        foreach (Lane lane in OpponentsLanes) {
+            lane.UpdateArray ();
+        }
     }
     public void UpdateArray () {
         units = GetComponentsInChildren<Unit> ();

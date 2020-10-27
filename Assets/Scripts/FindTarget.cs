@@ -5,7 +5,6 @@ public class FindTarget : MonoBehaviour {
     public Lane[] lanes;
     public int positionIndex;
     public bool playerControlled = true;
-    public bool playerSelectedTarget;
     int myLaneLength;
     int startIndex, endIndex;
     int LaneAttackRange;
@@ -23,8 +22,6 @@ public class FindTarget : MonoBehaviour {
     }
 
     public void UpdateTarget (int positionIndex, int myLaneLength) {
-        if (playerSelectedTarget)
-            return;
         this.positionIndex = positionIndex;
         this.myLaneLength = myLaneLength;
         LaneSearchIndex ();

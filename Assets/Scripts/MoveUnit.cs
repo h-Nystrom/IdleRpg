@@ -16,6 +16,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     }
     public void OnBeginDrag (PointerEventData eventData) {
         if (unitPrefab != null) {
+            //Check if you have enough cash here!
             newUnit = Instantiate (unitPrefab, parent);
             newUnit.AddComponent<IgnoreRayCast> ();
         } else {
@@ -24,6 +25,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             OldParent = this.transform.parent;
             transform.SetParent (parent);
             OldParent.GetComponent<Lane> ().UpdateArray ();
+            OldParent.GetComponent<Lane> ().UpdateOpponentsLanes ();
         }
         newUnit.GetComponent<FindTarget> ().enemy = null;
         draggingUnit.IsDraggingUnit (true);

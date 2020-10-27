@@ -8,11 +8,12 @@ public class SpawnUnit : MonoBehaviour {
     public void Spawning () {
         GameObject newUnit = Instantiate (unitPrefab, this.transform);
         if (!playerControlled) {
+            newUnit.GetComponent<Unit> ().weaponRange = 3;
             Destroy (newUnit.GetComponent<MoveUnit> ());
             if (!spawnPlayerCommander)
                 newUnit.GetComponent<FindTarget> ().playerControlled = false;
         }
         GetComponent<Lane> ().UpdateArray ();
-        //Update all opponents lanes!
+        GetComponent<Lane> ().UpdateOpponentsLanes ();
     }
 }

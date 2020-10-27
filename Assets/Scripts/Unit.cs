@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour {
 
     //Unit Data:
     public string unitName = "unit name";
-    public int health = 100;
+    public int maxHealth = 100;
     public int blockChance = 10;
     public UnitType unitType;
     public enum UnitType {
@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour {
     public bool poisen;
     float attackRate; //Weapon attackRate
     //All
+    int health = 100;
     bool isAlive;
     bool chargingAttack;
     FindTarget attackTarget;
@@ -45,15 +46,23 @@ public class Unit : MonoBehaviour {
             }
         }
     }
+    void OnDeath () {
+        Destroy (this.gameObject);
+        if (parentLane != null) {
+            parentLane.GetComponent<Lane> ().UpdateArray ();
+            parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
+        }
+    }
     public void SetupUnit (Transform parentLane, int index) {
         this.parentLane = parentLane;
         transform.SetParent (this.parentLane);
         transform.SetSiblingIndex (index);
-        transform.position = this.parentLane.position;
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
         parentLane.GetComponent<Lane> ().UpdateArray ();
+        parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
     }
     void Start () {
+        health = maxHealth;
         nameTxt.text = $"Warrior {Random.Range(0, 101)}"; //Change to name
         attackTarget = GetComponent<FindTarget> ();
     }
@@ -74,14 +83,35 @@ public class Unit : MonoBehaviour {
     }
     public void Attack () {
         //Calculate:
-        //Block, crit, dmg
-
-        Debug.Log ($"Attacking {attackTarget.enemy.GetComponent<Unit>().nameTxt.text}!");
+        if (attackTarget.enemy != null) {
+            Unit enemy = attackTarget.enemy.GetComponent<Unit> ();
+            int enemyBlockChance = Random.Range (0, 101);
+            int attackDamage = 0;
+            int CritDamage = 0;
+            if (enemyBlockChance > enemy.blockChance) {
+                CritDamage = Random.Range (0, 101);
+                if (CritDamage <= CritChance)
+                    attackDamage = damage + CritDamage;
+                else {
+                    attackDamage = damage;
+                    CritDamage = 0;
+                }
+            }
+            enemy.TakeDamage (attackDamage, CritDamage);
+        }
     }
-    public void TakeDamage (int damage) {
-        //Calculate health:
-        //Using: armour
+    public void TakeDamage (int damage, int crit) {
+        //Decrease dmg dependent on armour
+        //Check if the unit have powers shield activated
+        if (damage > 0) {
+            health = Mathf.Clamp (health - damage, 0, maxHealth);
+            if (!IsAlive) {
+                Debug.Log ("Dead!");
+                OnDeath ();
+            }
+        } else {
+            Debug.Log (nameTxt.text + " dodged the attack!");
+        }
 
-        Debug.Log ("Tacking Damage!", this.gameObject);
     }
 }
