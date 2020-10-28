@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour {
         Range,
         Support,
         Scavanger,
-        Hero
+        Commander
     }
 
     //Weapon Data:
@@ -34,6 +34,7 @@ public class Unit : MonoBehaviour {
     FindTarget attackTarget;
     Transform parentLane;
     public TMP_Text nameTxt;
+    public HealthBar healthBar;
     public int AttackRange {
         get => weaponRange;
     }
@@ -47,11 +48,12 @@ public class Unit : MonoBehaviour {
         }
     }
     void OnDeath () {
-        Destroy (this.gameObject);
         if (parentLane != null) {
             parentLane.GetComponent<Lane> ().UpdateArray ();
-            parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
+            parentLane.GetComponent<Lane> ().Invoke ("UpdateArray", 1);
+            parentLane.GetComponent<Lane> ().Invoke ("UpdateOpponentsLanes", 1);
         }
+        Destroy (this.gameObject);
     }
     public void SetupUnit (Transform parentLane, int index) {
         this.parentLane = parentLane;
@@ -60,6 +62,7 @@ public class Unit : MonoBehaviour {
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
         parentLane.GetComponent<Lane> ().UpdateArray ();
         parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
+        healthBar.MaxHealth = maxHealth;
     }
     void Start () {
         health = maxHealth;
@@ -82,7 +85,6 @@ public class Unit : MonoBehaviour {
         }
     }
     public void Attack () {
-        //Calculate:
         if (attackTarget.enemy != null) {
             Unit enemy = attackTarget.enemy.GetComponent<Unit> ();
             int enemyBlockChance = Random.Range (0, 101);
@@ -97,21 +99,28 @@ public class Unit : MonoBehaviour {
                     CritDamage = 0;
                 }
             }
+
             enemy.TakeDamage (attackDamage, CritDamage);
-        }
-    }
-    public void TakeDamage (int damage, int crit) {
-        //Decrease dmg dependent on armour
-        //Check if the unit have powers shield activated
-        if (damage > 0) {
-            health = Mathf.Clamp (health - damage, 0, maxHealth);
-            if (!IsAlive) {
-                Debug.Log ("Dead!");
-                OnDeath ();
-            }
-        } else {
-            Debug.Log (nameTxt.text + " dodged the attack!");
+            GetComponent<UIIndicator> ().SpawnNewIndicator (enemy.transform.position, $"-{attackDamage}", true);
         }
 
+    }
+    public void TakeDamage (int damage, int crit) {
+        if (IsAlive) {
+            if (damage > 0) {
+                health = Mathf.Clamp (health - damage, 0, maxHealth);
+                healthBar.UpdateHealthBar (health);
+                try {
+                    if (attackTarget.enemy == null && parentLane != null)
+                        parentLane.GetComponent<Lane> ().UpdateArray ();
+                } catch {
+                    Debug.Log ("ParentlaneBug");
+                }
+
+                if (!IsAlive) {
+                    OnDeath ();
+                }
+            }
+        }
     }
 }

@@ -241,6 +241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
+  OpponentsLanes:
+  - {fileID: 751008546}
+  - {fileID: 922649924}
   maxUnits: 3
 --- !u!114 &75105528
 MonoBehaviour:
@@ -254,9 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1b87f7ff9aaed42a24efcb194bddb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 0
   maxSpawnCount: 60
-  spawnRatePerLevel: 05000000050000000500000005000000020000000200000002000000020000000200000002000000
+  spawnRatePerLevel: 0a000000640000000500000005000000020000000200000002000000020000000200000002000000
   spawnCountPerLevel: 3c0000005000000064000000780000008c000000a0000000b4000000c8000000dc000000f0000000
 --- !u!114 &75105529
 MonoBehaviour:
@@ -563,6 +566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
+  OpponentsLanes:
+  - {fileID: 75105527}
+  - {fileID: 1343347902}
   maxUnits: 3
 --- !u!1 &825874672
 GameObject:
@@ -682,6 +688,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
+  OpponentsLanes:
+  - {fileID: 751008546}
+  - {fileID: 922649924}
   maxUnits: 1
 --- !u!114 &825874678
 MonoBehaviour:
@@ -848,6 +857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
+  OpponentsLanes:
+  - {fileID: 75105527}
+  - {fileID: 1343347902}
   maxUnits: 3
 --- !u!1 &1049863701
 GameObject:
@@ -1069,6 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
+  OpponentsLanes: []
   maxUnits: 1
 --- !u!114 &1059762676
 MonoBehaviour:
@@ -1426,6 +1439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
+  OpponentsLanes:
+  - {fileID: 751008546}
+  - {fileID: 922649924}
   maxUnits: 3
 --- !u!114 &1343347903
 MonoBehaviour:
@@ -1456,7 +1472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   maxSpawnCount: 0
-  spawnRatePerLevel: 05000000050000000500000005000000050000000300000003000000030000000300000003000000
+  spawnRatePerLevel: 64000000050000000500000005000000050000000300000003000000030000000300000003000000
   spawnCountPerLevel: 3c0000005000000064000000780000008c00000096000000a0000000aa000000b4000000be000000
 --- !u!1 &1730826367
 GameObject:

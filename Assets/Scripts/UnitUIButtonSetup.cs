@@ -2,7 +2,9 @@
 
 public class UnitUIButtonSetup : MonoBehaviour {
     public GameObject UnitUIPrefab;
+
     DraggingUnit draggingUnitScript;
+
     const int maxIndex = 6; //Change to scriptableobject array later!
     void Awake () {
         draggingUnitScript = GetComponent<DraggingUnit> ();

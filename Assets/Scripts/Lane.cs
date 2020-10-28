@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Lane : MonoBehaviour {
 
-    public Unit[] units;
+    public List<Unit> unitsList;
+    Unit[] units;
     public Lane[] OpponentsLanes = new Lane[3];
     public int maxUnits = 3;
     bool _isFull;
@@ -11,7 +13,6 @@ public class Lane : MonoBehaviour {
     }
     public void UpdateOpponentsLanes () {
         if (OpponentsLanes.Length == 0) {
-            Debug.Log ("Missing Opponents lanes");
             return;
         }
         foreach (Lane lane in OpponentsLanes) {
@@ -19,16 +20,26 @@ public class Lane : MonoBehaviour {
         }
     }
     public void UpdateArray () {
+        unitsList.Clear ();
         units = GetComponentsInChildren<Unit> ();
-        if (units.Length >= maxUnits)
+        foreach (Unit unit in units) {
+            if (unit.IsAlive) {
+                unit.GetComponent<FindTarget> ().enemy = null;
+                unitsList.Add (unit);
+            }
+        }
+        UpdateUnitTarget ();
+        IsLaneFull ();
+    }
+    void IsLaneFull () {
+        if (unitsList.Count >= maxUnits)
             _isFull = true;
         else
             _isFull = false;
-        UpdateUnitTarget ();
     }
     void UpdateUnitTarget () {
-        for (int i = 0; i < units.Length; i++) {
-            units[i].GetComponent<FindTarget> ().UpdateTarget (i, units.Length);
+        for (int i = 0; i < unitsList.Count; i++) {
+            unitsList[i].GetComponent<FindTarget> ().UpdateTarget (i, unitsList.Count);
         }
     }
 }

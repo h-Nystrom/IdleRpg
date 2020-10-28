@@ -1,10 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
     public GameObject unitPrefab;
     public Transform parent;
+    public Transform IgnoreRaycastParent;
     public DraggingUnit draggingUnit;
     GameObject newUnit;
     bool canSpawnNewUnit;
@@ -13,12 +13,15 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     void Start () {
         draggingUnit = FindObjectOfType<DraggingUnit> ();
         parent = draggingUnit.draggableObjectParent;
+        IgnoreRaycastParent = GameObject.FindWithTag ("FloatText").transform;
     }
     public void OnBeginDrag (PointerEventData eventData) {
+
         if (unitPrefab != null) {
             //Check if you have enough cash here!
             newUnit = Instantiate (unitPrefab, parent);
             newUnit.AddComponent<IgnoreRayCast> ();
+            newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
         } else {
             CalculateSiblingIndex (eventData.pointerEnter.transform.position.y, this.transform.parent.position.y);
             newUnit = this.gameObject;
@@ -43,6 +46,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             }
         } else {
             ResetUnitPosition ();
+
         }
         draggingUnit.IsDraggingUnit (false);
     }

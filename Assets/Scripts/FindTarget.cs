@@ -20,7 +20,6 @@ public class FindTarget : MonoBehaviour {
     void Start () {
         lanes = FindObjectsOfType<Lane> ();
     }
-
     public void UpdateTarget (int positionIndex, int myLaneLength) {
         this.positionIndex = positionIndex;
         this.myLaneLength = myLaneLength;
@@ -41,7 +40,7 @@ public class FindTarget : MonoBehaviour {
     void FindNextTarget () {
         foreach (Lane lane in lanes) {
             for (int i = startIndex; i <= endIndex; i++) {
-                if (lane.name == laneNames[i] && lane.units.Length > 0 && LaneAttackRange >= i) {
+                if (lane.name == laneNames[i] && lane.unitsList.Count > 0 && LaneAttackRange >= i) {
                     enemy = FindClosestTargetInLane (lane);
                     break;
                 }
@@ -51,17 +50,22 @@ public class FindTarget : MonoBehaviour {
         }
     }
     GameObject FindClosestTargetInLane (Lane lane) {
-
-        if (lane.units.Length - 1 >= positionIndex) {
-            if (positionIndex == 0 && myLaneLength == 1 && lane.units.Length == 3) {
-                return lane.units[1].gameObject;
-            } else if (lane.units[positionIndex] != null) {
-                return lane.units[positionIndex].gameObject;
+        try {
+            if (lane.unitsList.Count - 1 >= positionIndex) {
+                if (positionIndex == 0 && myLaneLength == 1 && lane.unitsList.Count == 3) {
+                    return lane.unitsList[1].gameObject;
+                } else if (lane.unitsList[positionIndex] != null) {
+                    return lane.unitsList[positionIndex].gameObject;
+                } else {
+                    return lane.unitsList[lane.unitsList.Count - 1].gameObject;
+                }
             } else {
-                return lane.units[lane.units.Length - 1].gameObject;
+                return lane.unitsList[lane.unitsList.Count - 1].gameObject;
             }
-        } else {
-            return lane.units[lane.units.Length - 1].gameObject;
+        } catch {
+            Debug.Log ("Catch");
+            return null;
         }
+
     }
 }
