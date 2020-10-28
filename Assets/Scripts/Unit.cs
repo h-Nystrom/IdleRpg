@@ -19,8 +19,8 @@ public class Unit : MonoBehaviour {
 
     //Weapon Data:
     public int damage = 10;
-    [Range (0, 2)]
-    public int weaponRange = 1;
+    [Range (0, 3)]
+    public int weaponRange = 3;
     public int CritChance = 10;
     public float attackSpeed = 2;
     public bool blockableAttack = false;
@@ -32,7 +32,7 @@ public class Unit : MonoBehaviour {
     bool isAlive;
     bool chargingAttack;
     FindTarget attackTarget;
-    Transform parentLane;
+    public Transform parentLane;
     public TMP_Text nameTxt;
     public HealthBar healthBar;
     public int AttackRange {
@@ -47,12 +47,16 @@ public class Unit : MonoBehaviour {
             }
         }
     }
-    void OnDeath () {
+    void OnDestroy () {
         if (parentLane != null) {
             parentLane.GetComponent<Lane> ().UpdateArray ();
-            parentLane.GetComponent<Lane> ().Invoke ("UpdateArray", 1);
-            parentLane.GetComponent<Lane> ().Invoke ("UpdateOpponentsLanes", 1);
+            parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
         }
+    }
+    void OnDeath () {
+        parentLane.GetComponent<Lane> ().unitsList.Remove (this);
+        //parentLane.GetComponent<Lane> ().Invoke ("UpdateArray", 0.1f);
+        //parentLane.GetComponent<Lane> ().Invoke ("UpdateOpponentsLanes", 0.1f);
         Destroy (this.gameObject);
     }
     public void SetupUnit (Transform parentLane, int index) {
@@ -99,7 +103,6 @@ public class Unit : MonoBehaviour {
                     CritDamage = 0;
                 }
             }
-
             enemy.TakeDamage (attackDamage, CritDamage);
             GetComponent<UIIndicator> ().SpawnNewIndicator (enemy.transform.position, $"-{attackDamage}", true);
         }
@@ -110,13 +113,6 @@ public class Unit : MonoBehaviour {
             if (damage > 0) {
                 health = Mathf.Clamp (health - damage, 0, maxHealth);
                 healthBar.UpdateHealthBar (health);
-                try {
-                    if (attackTarget.enemy == null && parentLane != null)
-                        parentLane.GetComponent<Lane> ().UpdateArray ();
-                } catch {
-                    Debug.Log ("ParentlaneBug");
-                }
-
                 if (!IsAlive) {
                     OnDeath ();
                 }

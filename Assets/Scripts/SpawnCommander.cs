@@ -4,6 +4,6 @@
 public class SpawnCommander : MonoBehaviour {
     //Saved values here
     void Start () {
-        GetComponent<SpawnUnit> ().Spawning ();
+        GetComponent<SpawnUnit> ().Spawning (0);
     }
 }

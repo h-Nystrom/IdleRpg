@@ -8,7 +8,6 @@ public class FindTarget : MonoBehaviour {
     int myLaneLength;
     int startIndex, endIndex;
     int LaneAttackRange;
-
     string[] laneNames = new string[] {
         "EnemyMelee",
         "EnemyRange",
@@ -26,7 +25,7 @@ public class FindTarget : MonoBehaviour {
         LaneSearchIndex ();
         FindNextTarget ();
     }
-    public void LaneSearchIndex () {
+    void LaneSearchIndex () {
         if (playerControlled == true) {
             startIndex = 0;
             endIndex = 2;
@@ -50,22 +49,16 @@ public class FindTarget : MonoBehaviour {
         }
     }
     GameObject FindClosestTargetInLane (Lane lane) {
-        try {
-            if (lane.unitsList.Count - 1 >= positionIndex) {
-                if (positionIndex == 0 && myLaneLength == 1 && lane.unitsList.Count == 3) {
-                    return lane.unitsList[1].gameObject;
-                } else if (lane.unitsList[positionIndex] != null) {
-                    return lane.unitsList[positionIndex].gameObject;
-                } else {
-                    return lane.unitsList[lane.unitsList.Count - 1].gameObject;
-                }
+        if (lane.unitsList.Count - 1 >= positionIndex) {
+            if (positionIndex == 0 && myLaneLength == 1 && lane.unitsList.Count == 3) {
+                return lane.unitsList[1].gameObject;
+            } else if (lane.unitsList[positionIndex] != null) {
+                return lane.unitsList[positionIndex].gameObject;
             } else {
                 return lane.unitsList[lane.unitsList.Count - 1].gameObject;
             }
-        } catch {
-            Debug.Log ("Catch");
-            return null;
+        } else {
+            return lane.unitsList[lane.unitsList.Count - 1].gameObject;
         }
-
     }
 }

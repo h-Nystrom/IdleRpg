@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour {
         if (Time.time - spawnTimer > spawnRate) {
             if (GetComponent<Lane> ().unitsList.Count < maxUnits) {
                 spawnCount++;
-                GetComponent<SpawnUnit> ().Spawning ();
+                GetComponent<SpawnUnit> ().Spawning (GetComponent<Lane> ().unitsList.Count - 1);
                 if (spawnCount >= maxSpawnCount) {
                     LevelUp ();
                 } else {

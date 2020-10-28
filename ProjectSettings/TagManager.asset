@@ -15,6 +15,7 @@ TagManager:
   - Melee
   - Commander
   - CombatLane
+  - FloatText
   layers:
   - Default
   - TransparentFX

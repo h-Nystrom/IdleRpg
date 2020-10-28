@@ -378,12 +378,13 @@ MonoBehaviour:
   blockChance: 10
   unitType: 0
   damage: 10
-  weaponRange: 1
+  weaponRange: 3
   CritChance: 10
   attackSpeed: 2
   blockableAttack: 0
   splash: 0
   poisen: 0
+  parentLane: {fileID: 0}
   nameTxt: {fileID: 4894813717651810950}
   healthBar: {fileID: 4673671614378003678}
 --- !u!114 &5404435879111011018
@@ -436,6 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 0}
   parent: {fileID: 0}
+  IgnoreRaycastParent: {fileID: 0}
   draggingUnit: {fileID: 0}
 --- !u!114 &2909487061591130098
 MonoBehaviour:
@@ -450,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IndicatorPrefab: {fileID: 4374427267689744567, guid: 0bc629547b0eecf43b911d1f7b3af005, type: 3}
-  ignoreRaycast: {fileID: 0}
+  ignoreRaycastParent: {fileID: 0}
 --- !u!1 &8981982221523347627
 GameObject:
   m_ObjectHideFlags: 0

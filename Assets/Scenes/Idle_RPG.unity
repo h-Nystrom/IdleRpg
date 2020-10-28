@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2edc5b7c779348be6ec3e1a7b85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  unitsList: []
   OpponentsLanes:
   - {fileID: 751008546}
   - {fileID: 922649924}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   maxSpawnCount: 60
-  spawnRatePerLevel: 0a000000640000000500000005000000020000000200000002000000020000000200000002000000
+  spawnRatePerLevel: 0200000064000000
   spawnCountPerLevel: 3c0000005000000064000000780000008c000000a0000000b4000000c8000000dc000000f0000000
 --- !u!114 &75105529
 MonoBehaviour:
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
+  IgnoreRaycastParent: {fileID: 1231818644}
   playerControlled: 0
   spawnPlayerCommander: 0
 --- !u!1 &246226909
@@ -565,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2edc5b7c779348be6ec3e1a7b85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  unitsList: []
   OpponentsLanes:
   - {fileID: 75105527}
   - {fileID: 1343347902}
@@ -687,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2edc5b7c779348be6ec3e1a7b85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  unitsList: []
   OpponentsLanes:
   - {fileID: 751008546}
   - {fileID: 922649924}
@@ -705,6 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
+  IgnoreRaycastParent: {fileID: 1231818644}
   playerControlled: 0
   spawnPlayerCommander: 0
 --- !u!114 &825874679
@@ -856,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2edc5b7c779348be6ec3e1a7b85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  unitsList: []
   OpponentsLanes:
   - {fileID: 75105527}
   - {fileID: 1343347902}
@@ -1080,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2edc5b7c779348be6ec3e1a7b85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  unitsList: []
   OpponentsLanes: []
   maxUnits: 1
 --- !u!114 &1059762676
@@ -1096,6 +1098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
+  IgnoreRaycastParent: {fileID: 1231818644}
   playerControlled: 1
   spawnPlayerCommander: 1
 --- !u!114 &1059762677
@@ -1255,8 +1258,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1231818644}
   m_Layer: 5
-  m_Name: Float_Text
-  m_TagString: Untagged
+  m_Name: FloatText
+  m_TagString: FloatText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1438,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2edc5b7c779348be6ec3e1a7b85b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: []
+  unitsList: []
   OpponentsLanes:
   - {fileID: 751008546}
   - {fileID: 922649924}
@@ -1456,6 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
+  IgnoreRaycastParent: {fileID: 1231818644}
   playerControlled: 0
   spawnPlayerCommander: 0
 --- !u!114 &1343347904
@@ -1471,8 +1475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  maxSpawnCount: 0
-  spawnRatePerLevel: 64000000050000000500000005000000050000000300000003000000030000000300000003000000
+  maxSpawnCount: 10
+  spawnRatePerLevel: 14000000050000000500000005000000050000000300000003000000030000000300000003000000
   spawnCountPerLevel: 3c0000005000000064000000780000008c00000096000000a0000000aa000000b4000000be000000
 --- !u!1 &1730826367
 GameObject:
