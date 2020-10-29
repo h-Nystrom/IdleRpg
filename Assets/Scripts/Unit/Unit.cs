@@ -35,6 +35,7 @@ public class Unit : MonoBehaviour {
     public Transform parentLane;
     public TMP_Text nameTxt;
     public HealthBar healthBar;
+    bool _isGameRunning = true;
     public int AttackRange {
         get => weaponRange;
     }
@@ -48,15 +49,18 @@ public class Unit : MonoBehaviour {
         }
     }
     void OnDestroy () {
-        if (parentLane != null) {
-            parentLane.GetComponent<Lane> ().UpdateArray ();
-            parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
+        if (_isGameRunning) {
+            if (parentLane != null) {
+                FindObjectOfType<LaneManager> ().UpdateLanes ();
+            }
         }
     }
+    void OnApplicationQuit () {
+        _isGameRunning = false;
+    }
     void OnDeath () {
-        parentLane.GetComponent<Lane> ().unitsList.Remove (this);
-        //parentLane.GetComponent<Lane> ().Invoke ("UpdateArray", 0.1f);
-        //parentLane.GetComponent<Lane> ().Invoke ("UpdateOpponentsLanes", 0.1f);
+        if (parentLane != null)
+            parentLane.GetComponent<Lane> ().unitsList.Remove (this);
         Destroy (this.gameObject);
     }
     public void SetupUnit (Transform parentLane, int index) {
@@ -64,8 +68,7 @@ public class Unit : MonoBehaviour {
         transform.SetParent (this.parentLane);
         transform.SetSiblingIndex (index);
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
-        parentLane.GetComponent<Lane> ().UpdateArray ();
-        parentLane.GetComponent<Lane> ().UpdateOpponentsLanes ();
+        FindObjectOfType<LaneManager> ().UpdateLanes ();
         healthBar.MaxHealth = maxHealth;
     }
     void Start () {

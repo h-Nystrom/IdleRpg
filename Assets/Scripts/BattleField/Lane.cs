@@ -5,23 +5,17 @@ public class Lane : MonoBehaviour {
 
     public List<Unit> unitsList;
     Unit[] units;
-    public Lane[] OpponentsLanes = new Lane[3];
     public int maxUnits = 3;
     bool _isFull;
     public bool IsFull {
         get => _isFull;
     }
-    public void UpdateOpponentsLanes () {
-        if (OpponentsLanes.Length == 0) {
-            return;
-        }
-        foreach (Lane lane in OpponentsLanes) {
-            lane.UpdateArray ();
-        }
-    }
-    public void UpdateArray () {
+    public void UpdateLane () {
         unitsList.Clear ();
         units = GetComponentsInChildren<Unit> ();
+        if (units.Length == 0) {
+            return;
+        }
         foreach (Unit unit in units) {
             if (unit.IsAlive) {
                 unit.GetComponent<FindTarget> ().enemy = null;
@@ -37,7 +31,7 @@ public class Lane : MonoBehaviour {
         else
             _isFull = false;
     }
-    void UpdateUnitTarget () {
+    public void UpdateUnitTarget () {
         for (int i = 0; i < unitsList.Count; i++) {
             unitsList[i].GetComponent<FindTarget> ().UpdateTarget (i, unitsList.Count);
         }

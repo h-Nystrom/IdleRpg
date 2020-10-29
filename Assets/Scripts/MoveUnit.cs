@@ -27,8 +27,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             newUnit = this.gameObject;
             OldParent = this.transform.parent;
             transform.SetParent (parent);
-            OldParent.GetComponent<Lane> ().UpdateArray ();
-            OldParent.GetComponent<Lane> ().UpdateOpponentsLanes ();
+            FindObjectOfType<LaneManager> ().UpdateLanes ();
         }
         newUnit.GetComponent<FindTarget> ().enemy = null;
         draggingUnit.IsDraggingUnit (true);
@@ -37,18 +36,29 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         newUnit.transform.position = eventData.position;
     }
     public void OnEndDrag (PointerEventData eventData) {
-        if (eventData.pointerEnter != null) {
-            if (eventData.pointerEnter.transform.tag != "CombatLane" || eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
-                ResetUnitPosition ();
+        if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane") {
+            if (eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
+                int OldSiblingIndex = SiblingIndex;
+                CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
+                SwitchUnits (eventData.pointerEnter.GetComponent<Lane> (), OldSiblingIndex);
             } else {
+
                 CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
                 newUnit.GetComponent<Unit> ().SetupUnit (eventData.pointerEnter.transform, SiblingIndex);
             }
         } else {
             ResetUnitPosition ();
-
         }
         draggingUnit.IsDraggingUnit (false);
+    }
+    void SwitchUnits (Lane lane, int OldSiblingIndex) {
+        if (unitPrefab != null) {
+            Destroy (newUnit);
+        } else {
+            Unit unit = lane.unitsList[SiblingIndex];
+            unit.SetupUnit (OldParent, OldSiblingIndex);
+            newUnit.GetComponent<Unit> ().SetupUnit (lane.transform, SiblingIndex);
+        }
     }
     void CalculateSiblingIndex (float mousePositionY, float lanePositionY) {
         if (mousePositionY == Mathf.Clamp (mousePositionY, lanePositionY - 20, lanePositionY + 20)) {
