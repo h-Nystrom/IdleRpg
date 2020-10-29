@@ -4,6 +4,7 @@
 public class EnemySpawner : MonoBehaviour {
     public int level;
     public int maxSpawnCount;
+    public Lane[] EnemyLanes;
     //Change to a scriptable object
     public int[] spawnRatePerLevel = new int[10];
     public int[] spawnCountPerLevel = new int[10];
@@ -11,38 +12,38 @@ public class EnemySpawner : MonoBehaviour {
     int spawnRate;
     int spawnCount;
     float spawnTimer;
-    int maxUnits;
 
     void Start () {
-        maxUnits = GetComponent<Lane> ().maxUnits;
-        LevelUp ();
+        SpawnNewEnemyCommander ();
     }
     void Update () {
         CanSpawnUnit ();
     }
     void LevelUp () {
-        if (level <= spawnRatePerLevel.Length) {
+        level++;
+        if (level < spawnRatePerLevel.Length) {
             spawnRate = spawnRatePerLevel[level];
             maxSpawnCount = spawnCountPerLevel[level];
-            spawnCount = 0;
-            spawnTimer = Time.time;
-        }
 
+        }
+        spawnCount = 0;
+        spawnTimer = Time.time;
+    }
+    public void SpawnNewEnemyCommander () {
+        LevelUp ();
+        GetComponent<SpawnUnit> ().Spawning (0);
     }
     void CanSpawnUnit () {
-
-        if (Time.time - spawnTimer > spawnRate) {
-            if (GetComponent<Lane> ().unitsList.Count < maxUnits) {
-                spawnCount++;
-                GetComponent<SpawnUnit> ().Spawning (GetComponent<Lane> ().unitsList.Count - 1);
-                if (spawnCount >= maxSpawnCount) {
-                    LevelUp ();
-                } else {
+        if (Time.time - spawnTimer > spawnRate && spawnCount <= maxSpawnCount) {
+            foreach (Lane lane in EnemyLanes) {
+                if (!lane.IsFull) {
+                    spawnCount++;
+                    lane.GetComponent<SpawnUnit> ().Spawning (lane.unitsList.Count - 1);
                     spawnTimer = Time.time;
+                    break;
                 }
-            } else {
-                spawnTimer = Time.time;
             }
+            spawnTimer = Time.time;
         }
     }
 }

@@ -22,7 +22,6 @@ public class Lane : MonoBehaviour {
                 unitsList.Add (unit);
             }
         }
-        UpdateUnitTarget ();
         IsLaneFull ();
     }
     void IsLaneFull () {

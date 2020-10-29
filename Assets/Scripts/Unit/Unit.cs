@@ -1,7 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
 
-[RequireComponent (typeof (FindTarget))]
 public class Unit : MonoBehaviour {
 
     //Unit Data:
@@ -19,8 +18,6 @@ public class Unit : MonoBehaviour {
 
     //Weapon Data:
     public int damage = 10;
-    [Range (0, 3)]
-    public int weaponRange = 3;
     public int CritChance = 10;
     public float attackSpeed = 2;
     public bool blockableAttack = false;
@@ -36,9 +33,6 @@ public class Unit : MonoBehaviour {
     public TMP_Text nameTxt;
     public HealthBar healthBar;
     bool _isGameRunning = true;
-    public int AttackRange {
-        get => weaponRange;
-    }
     public bool IsAlive {
         get {
             if (health > 0) {

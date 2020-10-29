@@ -10,6 +10,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     bool canSpawnNewUnit;
     Transform OldParent;
     int SiblingIndex;
+    public Lane[] attackLanes;
     void Start () {
         draggingUnit = FindObjectOfType<DraggingUnit> ();
         parent = draggingUnit.draggableObjectParent;
@@ -21,6 +22,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             //Check if you have enough cash here!
             newUnit = Instantiate (unitPrefab, parent);
             newUnit.AddComponent<IgnoreRayCast> ();
+            newUnit.GetComponent<FindTarget> ().attackLanes = this.attackLanes;
             newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
         } else {
             CalculateSiblingIndex (eventData.pointerEnter.transform.position.y, this.transform.parent.position.y);

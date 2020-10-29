@@ -1,51 +1,28 @@
 ﻿using UnityEngine;
 
+[RequireComponent (typeof (Unit))]
 public class FindTarget : MonoBehaviour {
     public GameObject enemy;
-    public Lane[] lanes;
+    public Lane[] attackLanes;
+    public bool canAttack = true;
     public int positionIndex;
-    public bool playerControlled = true;
     int myLaneLength;
-    int startIndex, endIndex;
-    int LaneAttackRange;
-    string[] laneNames = new string[] {
-        "EnemyMelee",
-        "EnemyRange",
-        "EnemyCommander",
-        "PlayerMelee",
-        "PlayerRange",
-        "PlayerCommander"
-    };
+
     void Start () {
-        lanes = FindObjectsOfType<Lane> ();
+        FindObjectsOfType<Lane> ();
     }
     public void UpdateTarget (int positionIndex, int myLaneLength) {
         this.positionIndex = positionIndex;
         this.myLaneLength = myLaneLength;
-        LaneSearchIndex ();
-        FindNextTarget ();
-    }
-    void LaneSearchIndex () {
-        if (playerControlled == true) {
-            startIndex = 0;
-            endIndex = 2;
-            LaneAttackRange = GetComponent<Unit> ().AttackRange;
-        } else {
-            startIndex = 3;
-            endIndex = 5;
-            LaneAttackRange = GetComponent<Unit> ().AttackRange + 3;
-        }
+        if (canAttack)
+            FindNextTarget ();
     }
     void FindNextTarget () {
-        foreach (Lane lane in lanes) {
-            for (int i = startIndex; i <= endIndex; i++) {
-                if (lane.name == laneNames[i] && lane.unitsList.Count > 0 && LaneAttackRange >= i) {
-                    enemy = FindClosestTargetInLane (lane);
-                    break;
-                }
-            }
-            if (enemy != null)
+        foreach (Lane lane in attackLanes) {
+            if (lane.unitsList.Count > 0) {
+                enemy = FindClosestTargetInLane (lane);
                 break;
+            }
         }
     }
     GameObject FindClosestTargetInLane (Lane lane) {
