@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1626638759}
   - component: {fileID: 9016581305354980362}
   - component: {fileID: 3229598291294828266}
-  - component: {fileID: -4269915979239514914}
+  - component: {fileID: 5841840487950555802}
   - component: {fileID: -5625799517372366727}
   m_Layer: 5
   m_Name: BuyUnitUI
@@ -292,8 +292,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4191794769110226151}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &-4269915979239514914
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BuyUnit, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+--- !u!114 &5841840487950555802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,14 +314,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4191794769110226137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f543fed383e3f44458f30688c334821a, type: 3}
+  m_Script: {fileID: 11500000, guid: 83cd42f50001e2a4fab9ae75ef4a61f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceText: {fileID: 4123006971947209116}
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
-  parent: {fileID: 0}
-  IgnoreRaycastParent: {fileID: 0}
   draggingUnit: {fileID: 0}
   attackLanes: []
+  IgnoreRaycastParent: {fileID: 0}
 --- !u!114 &-5625799517372366727
 MonoBehaviour:
   m_ObjectHideFlags: 0

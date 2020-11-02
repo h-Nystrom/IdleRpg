@@ -35,7 +35,7 @@ public class SpawnUnit : MonoBehaviour {
                 Commander commander = FindObjectOfType<Commander> ();
                 Button button = newUnit.AddComponent<Button> ();
                 button.transition = Selectable.Transition.None;
-                button.onClick.AddListener (() => { Debug.Log ("Clicked !"); commander.OnEnemyClick (newUnit.GetComponent<Unit> ()); });
+                button.onClick.AddListener (() => { commander.OnEnemyClick (newUnit.GetComponent<Unit> ()); });
             }
         }
         newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
