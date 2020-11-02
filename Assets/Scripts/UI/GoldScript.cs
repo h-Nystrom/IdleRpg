@@ -14,7 +14,7 @@ public class GoldScript : MonoBehaviour {
     public int GoldAmount {
         get => _goldAmount;
         set {
-            _goldAmount = value;
+            _goldAmount += value;
             goldText.text = $"Gold: {GoldAmount}";
         }
     }

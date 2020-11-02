@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
 public class LaneManager : MonoBehaviour {
-    public Lane[] lanes;
+    public Lane[] attackLanes;
     public Lane[] enemyLanes, playerLanes;
 
     public void UpdateLanes () {
-        foreach (Lane lane in lanes) {
+        foreach (Lane lane in attackLanes) {
             lane.UpdateLane ();
         }
-        foreach (Lane lane1 in lanes) {
-            if (lane1.unitsList.Count > 0)
-                lane1.UpdateUnitTarget ();
+        foreach (Lane attackLane in attackLanes) {
+            if (attackLane.unitsList.Count > 0)
+                attackLane.UpdateUnitTarget ();
         }
     }
 }

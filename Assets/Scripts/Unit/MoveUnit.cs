@@ -6,16 +6,12 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public Transform parent;
     public Transform IgnoreRaycastParent;
     public DraggingUnit draggingUnit;
+    public Lane[] attackLanes;
+    GoldScript goldScript;
     GameObject newUnit;
     bool canSpawnNewUnit;
     Transform OldParent;
     int SiblingIndex;
-    public Lane[] attackLanes;
-    void Start () {
-        draggingUnit = FindObjectOfType<DraggingUnit> ();
-        parent = draggingUnit.draggableObjectParent;
-        IgnoreRaycastParent = GameObject.FindWithTag ("FloatText").transform;
-    }
     public void OnBeginDrag (PointerEventData eventData) {
 
         if (unitPrefab != null) {
@@ -78,6 +74,12 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         else {
             newUnit.GetComponent<Unit> ().SetupUnit (OldParent, SiblingIndex);
         }
+    }
+    void Start () {
+        goldScript = FindObjectOfType<GoldScript> ();
+        draggingUnit = FindObjectOfType<DraggingUnit> ();
+        parent = draggingUnit.draggableObjectParent;
+        IgnoreRaycastParent = GameObject.FindWithTag ("FloatText").transform;
     }
 
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class UnitUIButtonSetup : MonoBehaviour {
-    public GameObject UnitUIPrefab;
+    public MoveUnit UnitUIPrefab;
 
     DraggingUnit draggingUnitScript;
     LaneManager laneManager;
@@ -13,9 +13,9 @@ public class UnitUIButtonSetup : MonoBehaviour {
     }
     void SetUpButtons () {
         for (int i = 0; i <= maxIndex; i++) {
-            GameObject UnitUIButton = Instantiate (UnitUIPrefab, this.transform);
-            UnitUIButton.GetComponent<MoveUnit> ().draggingUnit = draggingUnitScript;
-            UnitUIButton.GetComponent<MoveUnit> ().attackLanes = laneManager.enemyLanes;
+            MoveUnit UnitUIButton = Instantiate (UnitUIPrefab, this.transform);
+            UnitUIButton.draggingUnit = draggingUnitScript;
+            UnitUIButton.attackLanes = laneManager.enemyLanes;
         }
     }
 }

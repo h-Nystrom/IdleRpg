@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IgnoreRayCast : MonoBehaviour {
 
@@ -12,7 +11,6 @@ public class IgnoreRayCast : MonoBehaviour {
         DraggingUnit.OnDraggingUnit -= OnDraggingUnit;
     }
     void OnDraggingUnit (bool InUse) {
-        //Debug.Log ("EventStart" + InUse);
         if (InUse) {
             GetComponent<CanvasGroup> ().alpha = 0.9f;
             GetComponent<CanvasGroup> ().blocksRaycasts = false;
@@ -20,6 +18,5 @@ public class IgnoreRayCast : MonoBehaviour {
             GetComponent<CanvasGroup> ().alpha = 1f;
             GetComponent<CanvasGroup> ().blocksRaycasts = true;
         }
-
     }
 }

@@ -16,6 +16,7 @@ TagManager:
   - Commander
   - CombatLane
   - FloatText
+  - Enemy
   layers:
   - Default
   - TransparentFX

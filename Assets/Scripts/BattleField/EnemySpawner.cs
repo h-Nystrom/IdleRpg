@@ -5,33 +5,24 @@ public class EnemySpawner : MonoBehaviour {
     public int level;
     public int maxSpawnCount;
     public Lane[] EnemyLanes;
-    //Change to a scriptable object
     public int[] spawnRatePerLevel = new int[10];
     public int[] spawnCountPerLevel = new int[10];
-    //
     int spawnRate;
     int spawnCount;
     float spawnTimer;
 
-    void Start () {
-        SpawnNewEnemyCommander ();
-    }
-    void Update () {
-        CanSpawnUnit ();
+    public void SpawnNewEnemyCommander () {
+        LevelUp ();
+        GetComponent<SpawnUnit> ().Spawning (0);
     }
     void LevelUp () {
         level++;
         if (level < spawnRatePerLevel.Length) {
             spawnRate = spawnRatePerLevel[level];
             maxSpawnCount = spawnCountPerLevel[level];
-
         }
         spawnCount = 0;
         spawnTimer = Time.time;
-    }
-    public void SpawnNewEnemyCommander () {
-        LevelUp ();
-        GetComponent<SpawnUnit> ().Spawning (0);
     }
     void CanSpawnUnit () {
         if (Time.time - spawnTimer > spawnRate && spawnCount <= maxSpawnCount) {
@@ -46,4 +37,11 @@ public class EnemySpawner : MonoBehaviour {
             spawnTimer = Time.time;
         }
     }
+    void Start () {
+        SpawnNewEnemyCommander ();
+    }
+    void Update () {
+        CanSpawnUnit ();
+    }
+
 }

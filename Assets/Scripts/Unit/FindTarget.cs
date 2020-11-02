@@ -8,9 +8,6 @@ public class FindTarget : MonoBehaviour {
     public int positionIndex;
     int myLaneLength;
 
-    void Start () {
-        FindObjectsOfType<Lane> ();
-    }
     public void UpdateTarget (int positionIndex, int myLaneLength) {
         this.positionIndex = positionIndex;
         this.myLaneLength = myLaneLength;
@@ -37,5 +34,8 @@ public class FindTarget : MonoBehaviour {
         } else {
             return lane.unitsList[lane.unitsList.Count - 1].gameObject;
         }
+    }
+    void Start () {
+        FindObjectsOfType<Lane> ();
     }
 }

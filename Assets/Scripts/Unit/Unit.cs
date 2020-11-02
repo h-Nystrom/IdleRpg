@@ -25,14 +25,22 @@ public class Unit : MonoBehaviour {
     public bool poisen;
     float attackRate; //Weapon attackRate
     //All
-    int health = 100;
-    bool isAlive;
-    bool chargingAttack;
     FindTarget attackTarget;
     public Transform parentLane;
     public TMP_Text nameTxt;
     public HealthBar healthBar;
     bool _isGameRunning = true;
+    int health = 100;
+    bool isAlive;
+    bool chargingAttack;
+    public void SetupUnit (Transform parentLane, int index) {
+        this.parentLane = parentLane;
+        transform.SetParent (this.parentLane);
+        transform.SetSiblingIndex (index);
+        GetComponent<CanvasGroup> ().blocksRaycasts = true;
+        FindObjectOfType<LaneManager> ().UpdateLanes ();
+        healthBar.MaxHealth = maxHealth;
+    }
     public bool IsAlive {
         get {
             if (health > 0) {
@@ -56,14 +64,6 @@ public class Unit : MonoBehaviour {
         if (parentLane != null)
             parentLane.GetComponent<Lane> ().unitsList.Remove (this);
         Destroy (this.gameObject);
-    }
-    public void SetupUnit (Transform parentLane, int index) {
-        this.parentLane = parentLane;
-        transform.SetParent (this.parentLane);
-        transform.SetSiblingIndex (index);
-        GetComponent<CanvasGroup> ().blocksRaycasts = true;
-        FindObjectOfType<LaneManager> ().UpdateLanes ();
-        healthBar.MaxHealth = maxHealth;
     }
     void Start () {
         health = maxHealth;
@@ -103,7 +103,6 @@ public class Unit : MonoBehaviour {
             enemy.TakeDamage (attackDamage, CritDamage);
             GetComponent<UIIndicator> ().SpawnNewIndicator (enemy.transform.position, $"-{attackDamage}", true);
         }
-
     }
     public void TakeDamage (int damage, int crit) {
         if (IsAlive) {

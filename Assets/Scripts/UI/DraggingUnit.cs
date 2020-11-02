@@ -5,7 +5,6 @@ public class DraggingUnit : MonoBehaviour {
     public delegate void SpawnUnitDelegate (bool InUse);
     public Transform draggableObjectParent;
     public void IsDraggingUnit (bool draggingUnit) {
-        //Debug.Log ("Event" + draggingUnit);
         OnDraggingUnit?.Invoke (draggingUnit);
     }
 }

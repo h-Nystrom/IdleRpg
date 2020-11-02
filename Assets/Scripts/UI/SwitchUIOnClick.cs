@@ -2,10 +2,9 @@
 using UnityEngine;
 
 public class SwitchUIOnClick : MonoBehaviour {
-    bool _switchUI;
     public GameObject itemUI;
     public TMP_Text buttonTxt;
-
+    bool _switchUI;
     public void SwitchOnClick () {
         _switchUI = !_switchUI;
         if (_switchUI) {

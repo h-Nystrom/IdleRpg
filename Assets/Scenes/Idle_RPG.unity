@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 75105526}
   - component: {fileID: 75105527}
   - component: {fileID: 75105529}
-  - component: {fileID: 75105528}
   m_Layer: 5
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -242,22 +241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsList: []
   maxUnits: 3
---- !u!114 &75105528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75105522}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1b87f7ff9aaed42a24efcb194bddb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  maxSpawnCount: 60
-  spawnRatePerLevel: 0200000064000000
-  spawnCountPerLevel: 3c0000005000000064000000780000008c000000a0000000b4000000c8000000dc000000f0000000
 --- !u!114 &75105529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,8 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
   IgnoreRaycastParent: {fileID: 1231818644}
-  playerControlled: 0
-  spawnPlayerCommander: 0
+  unitType: 2
 --- !u!1 &246226909
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,8 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
   IgnoreRaycastParent: {fileID: 1231818644}
-  playerControlled: 0
-  spawnPlayerCommander: 0
+  unitType: 1
 --- !u!114 &825874679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,15 +688,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825874672}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b1b87f7ff9aaed42a24efcb194bddb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  maxSpawnCount: 0
-  spawnRatePerLevel: 780000003c000000
-  spawnCountPerLevel: 0100000001000000
+  maxSpawnCount: 10
+  EnemyLanes:
+  - {fileID: 75105527}
+  - {fileID: 1343347902}
+  spawnRatePerLevel: 0a0000000500000003000000
+  spawnCountPerLevel: 04000000080000000c000000
 --- !u!1 &919542361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5487490498730723219, guid: 5f792ee0554f1584cb9b1b6a40b4ba84, type: 3}
@@ -1086,8 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
   IgnoreRaycastParent: {fileID: 1231818644}
-  playerControlled: 1
-  spawnPlayerCommander: 1
+  unitType: 0
 --- !u!114 &1059762677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3f88bcf38b9f542ae1c323b35a9118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitUIPrefab: {fileID: 4191794769110226137, guid: b76f6cb6b60982f4d9a4fb94dc362f71, type: 3}
+  UnitUIPrefab: {fileID: -4269915979239514914, guid: b76f6cb6b60982f4d9a4fb94dc362f71, type: 3}
 --- !u!1 &1231818643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,11 +1307,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7284c3bcbc7084097a842df1cbb0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lanes:
+  attackLanes:
   - {fileID: 751008546}
   - {fileID: 922649924}
   - {fileID: 75105527}
   - {fileID: 1343347902}
+  - {fileID: 825874677}
+  enemyLanes:
+  - {fileID: 75105527}
+  - {fileID: 1343347902}
+  - {fileID: 825874677}
+  playerLanes:
+  - {fileID: 751008546}
+  - {fileID: 922649924}
+  - {fileID: 1059762675}
 --- !u!1 &1343347897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1335,6 @@ GameObject:
   - component: {fileID: 1343347901}
   - component: {fileID: 1343347902}
   - component: {fileID: 1343347903}
-  - component: {fileID: 1343347904}
   m_Layer: 5
   m_Name: EnemyRange
   m_TagString: Untagged
@@ -1462,24 +1453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
   IgnoreRaycastParent: {fileID: 1231818644}
-  playerControlled: 0
-  spawnPlayerCommander: 0
---- !u!114 &1343347904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343347897}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1b87f7ff9aaed42a24efcb194bddb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  maxSpawnCount: 10
-  spawnRatePerLevel: 14000000050000000500000005000000050000000300000003000000030000000300000003000000
-  spawnCountPerLevel: 3c0000005000000064000000780000008c00000096000000a0000000aa000000b4000000be000000
+  unitType: 2
 --- !u!1 &1730826367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,9 +1612,6 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
   m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
@@ -1651,7 +1622,6 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1661,10 +1631,8 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
-  m_isTextTruncated: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1672,30 +1640,17 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 1
-  m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 1928665876}
-    characterCount: 6
-    spriteCount: 0
-    spaceCount: 1
-    wordCount: 1
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
