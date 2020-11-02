@@ -6,16 +6,16 @@ public class GoldScript : MonoBehaviour {
     int _goldAmount;
     void Start () {
         _goldAmount = PlayerPrefs.GetInt ("savedGold", 0);
-        goldText.text = $"Gold: {GoldAmount}";
+        goldText.text = $"Gold: {Amount}";
     }
     void OnDestroy () {
         PlayerPrefs.SetInt ("savedGold", _goldAmount);
     }
-    public int GoldAmount {
+    public int Amount {
         get => _goldAmount;
         set {
             _goldAmount += value;
-            goldText.text = $"Gold: {GoldAmount}";
+            goldText.text = $"Gold: {Amount}";
         }
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 
 public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
+    //Seperate this script to buyNewUnit and moveUnit.
     public GameObject unitPrefab;
     public Transform parent;
     public Transform IgnoreRaycastParent;
@@ -15,39 +16,49 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public void OnBeginDrag (PointerEventData eventData) {
 
         if (unitPrefab != null) {
-            //Check if you have enough cash here!
-            newUnit = Instantiate (unitPrefab, parent);
-            newUnit.AddComponent<IgnoreRayCast> ();
-            newUnit.GetComponent<FindTarget> ().attackLanes = this.attackLanes;
-            newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
+            if (goldScript.Amount >= 100) {
+                newUnit = Instantiate (unitPrefab, parent);
+                newUnit.AddComponent<IgnoreRayCast> ();
+                newUnit.GetComponent<FindTarget> ().attackLanes = this.attackLanes;
+                newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
+                newUnit.GetComponent<FindTarget> ().enemy = null;
+                draggingUnit.IsDraggingUnit (true);
+            }
         } else {
             CalculateSiblingIndex (eventData.pointerEnter.transform.position.y, this.transform.parent.position.y);
             newUnit = this.gameObject;
             OldParent = this.transform.parent;
             transform.SetParent (parent);
             FindObjectOfType<LaneManager> ().UpdateLanes ();
+            newUnit.GetComponent<FindTarget> ().enemy = null;
+            draggingUnit.IsDraggingUnit (true);
         }
-        newUnit.GetComponent<FindTarget> ().enemy = null;
-        draggingUnit.IsDraggingUnit (true);
     }
     public void OnDrag (PointerEventData eventData) {
-        newUnit.transform.position = eventData.position;
+        if (newUnit != null)
+            newUnit.transform.position = eventData.position;
     }
     public void OnEndDrag (PointerEventData eventData) {
-        if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane") {
-            if (eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
-                int OldSiblingIndex = SiblingIndex;
-                CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
-                SwitchUnits (eventData.pointerEnter.GetComponent<Lane> (), OldSiblingIndex);
+        if (newUnit != null) {
+            if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane") {
+                if (eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
+                    int OldSiblingIndex = SiblingIndex;
+                    CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
+                    SwitchUnits (eventData.pointerEnter.GetComponent<Lane> (), OldSiblingIndex);
+                } else {
+                    CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
+                    newUnit.GetComponent<Unit> ().SetupUnit (eventData.pointerEnter.transform, SiblingIndex);
+                    if (unitPrefab != null) {
+                        goldScript.Amount = -100;
+                        GetComponent<UIIndicator> ().SpawnNewIndicator (transform.position, $"-100gold", true);
+                    }
+                }
             } else {
-
-                CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
-                newUnit.GetComponent<Unit> ().SetupUnit (eventData.pointerEnter.transform, SiblingIndex);
+                ResetUnitPosition ();
             }
-        } else {
-            ResetUnitPosition ();
+            draggingUnit.IsDraggingUnit (false);
+            newUnit = null;
         }
-        draggingUnit.IsDraggingUnit (false);
     }
     void SwitchUnits (Lane lane, int OldSiblingIndex) {
         if (unitPrefab != null) {
