@@ -3,18 +3,37 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
     public TMP_Text priceText;
+    public TMP_Text nameText;
+    public TMP_Text healthText;
+    public TMP_Text weaponNameText;
+    public TMP_Text weaponDamageText;
     public GameObject unitPrefab;
     public DraggingUnit draggingUnit;
     public Lane[] attackLanes;
-    public Transform IgnoreRaycastParent;
-    //Add unit scriptableObject here!
+    UnitScriptableObject unitType;
     GameObject newUnit;
     GoldScript gold;
     Transform parent;
-    int _unitPrice = 100;
+    UIIndicator uiIndicator;
+    int price;
     int SiblingIndex;
     bool CanBuyUnit {
-        get => gold.Amount >= _unitPrice;
+        get => gold.Amount >= price;
+    }
+    public void Setup (UnitScriptableObject unitType, Lane[] enemyLanes, DraggingUnit draggingUnit) {
+        this.unitType = unitType;
+        this.nameText.text = unitType.name;
+        this.healthText.text = $"Hp: {unitType.health}";
+        this.price = unitType.price;
+        this.weaponNameText.text = unitType.startingWeapon.name;
+        this.weaponDamageText.text = unitType.startingWeapon.damage.ToString ();
+        this.attackLanes = enemyLanes;
+        this.draggingUnit = draggingUnit;
+        uiIndicator = FindObjectOfType<UIIndicator> ();
+        gold = FindObjectOfType<GoldScript> ();
+        draggingUnit = FindObjectOfType<DraggingUnit> ();
+        parent = draggingUnit.draggableObjectParent;
+        priceText.text = $"Price: {this.price}gold";
     }
 
     public void OnBeginDrag (PointerEventData eventData) {
@@ -43,14 +62,22 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     }
 
     public void PurchaseUnit () {
-        gold.Amount = -_unitPrice;
-        GetComponent<UIIndicator> ().SpawnNewIndicator (transform.position, $"-{_unitPrice}gold", true);
+        gold.Amount = -price;
+        uiIndicator.SpawnNewIndicator (transform.position, $"-{price}gold", true);
+    }
+    void ChangeColor () {
+        if (CanBuyUnit) {
+            priceText.color = Color.yellow;
+        } else {
+            priceText.color = Color.red;
+        }
     }
     void InstatiateUnit () {
         newUnit = Instantiate (unitPrefab, Input.mousePosition, Quaternion.identity, parent);
+        newUnit.GetComponent<Unit> ().SetupUnitType (unitType);
+        newUnit.GetComponent<Unit> ().SetupWeapon (unitType.startingWeapon);
         newUnit.AddComponent<IgnoreRayCast> ();
         newUnit.GetComponent<FindTarget> ().attackLanes = this.attackLanes;
-        newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = this.IgnoreRaycastParent;
         newUnit.GetComponent<FindTarget> ().enemy = null;
         draggingUnit.IsDraggingUnit (true);
     }
@@ -64,12 +91,7 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
             SiblingIndex = 2;
         }
     }
-    void Start () {
-        gold = FindObjectOfType<GoldScript> ();
-        draggingUnit = FindObjectOfType<DraggingUnit> ();
-        parent = draggingUnit.draggableObjectParent;
-        IgnoreRaycastParent = GameObject.FindWithTag ("FloatText").transform;
-        GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
-        priceText.text = $"Price: {_unitPrice}gold";
+    void Update () {
+        ChangeColor ();
     }
 }

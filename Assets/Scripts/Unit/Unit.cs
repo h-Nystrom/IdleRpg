@@ -2,44 +2,48 @@
 using UnityEngine;
 
 public class Unit : MonoBehaviour {
-
-    //Unit Data:
-    public string unitName = "unit name";
-    public int maxHealth = 100;
-    public int blockChance = 10;
-    public UnitType unitType;
-    public enum UnitType {
-        Melee,
-        Range,
-        Support,
-        Scavanger,
-        Commander
-    }
-
-    //Weapon Data:
-    public int damage = 10;
-    public int CritChance = 10;
-    public float attackSpeed = 2;
-    public bool blockableAttack = false;
-    public bool splash;
-    public bool poisen;
-    float attackRate; //Weapon attackRate
-    //All
-    FindTarget attackTarget;
     public Transform parentLane;
     public TMP_Text nameTxt;
     public HealthBar healthBar;
+    public UIIndicator uiIndicator;
+    FindTarget attackTarget;
     bool _isGameRunning = true;
+    int maxHealth = 100;
+    int damage = 10;
     int health = 100;
+    int CritChance = 1;
+    int attackRate = 10;
+    int blockChance = 10;
+    UnitType unitType;
+
+    float chargingAttack = 0;
     bool isAlive;
-    bool chargingAttack;
+
+    public void SetupUnitType (UnitScriptableObject unitType) {
+        this.name = unitType.name;
+        this.nameTxt.text = unitType.name;
+        this.maxHealth = unitType.health;
+        this.health = maxHealth;
+        this.unitType = unitType.unitType;
+        this.blockChance = unitType.blockChance;
+        healthBar.MaxHealth = maxHealth;
+    }
+    public void SetupWeapon (WeaponScriptableObject weapon) {
+        if (weapon.unitType == unitType) {
+            this.damage = weapon.damage;
+            this.CritChance = weapon.critChance;
+            this.attackRate = weapon.attackRate;
+        } else {
+            Debug.Log ("This unit can't carry this weapon!");
+        }
+    }
+
     public void SetupUnit (Transform parentLane, int index) {
         this.parentLane = parentLane;
         transform.SetParent (this.parentLane);
         transform.SetSiblingIndex (index);
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
         FindObjectOfType<LaneManager> ().UpdateLanes ();
-        healthBar.MaxHealth = maxHealth;
     }
     public bool IsAlive {
         get {
@@ -66,8 +70,7 @@ public class Unit : MonoBehaviour {
         Destroy (this.gameObject);
     }
     void Start () {
-        health = maxHealth;
-        nameTxt.text = $"Warrior {Random.Range(0, 101)}"; //Change to name
+        uiIndicator = FindObjectOfType<UIIndicator> ();
         attackTarget = GetComponent<FindTarget> ();
     }
     bool HasTarget => attackTarget.enemy != null;
@@ -78,11 +81,11 @@ public class Unit : MonoBehaviour {
         }
     }
     void ChargingAttack () {
-        if (attackRate == 0)
-            attackRate = Time.time;
-        if (Time.time - attackRate > attackSpeed) {
+        if (chargingAttack == 0)
+            chargingAttack = Time.time;
+        if (Time.time - chargingAttack > attackRate) {
             Attack ();
-            attackRate = Time.time;
+            chargingAttack = Time.time;
         }
     }
     public void Attack () {
@@ -101,7 +104,7 @@ public class Unit : MonoBehaviour {
                 }
             }
             enemy.TakeDamage (attackDamage, CritDamage);
-            GetComponent<UIIndicator> ().SpawnNewIndicator (enemy.transform.position, $"-{attackDamage}", true);
+            uiIndicator.SpawnNewIndicator (enemy.transform.position, $"-{attackDamage}", true);
         }
     }
     public void TakeDamage (int damage, int crit) {

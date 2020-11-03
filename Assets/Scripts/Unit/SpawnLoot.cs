@@ -5,12 +5,13 @@ public class SpawnLoot : MonoBehaviour {
     //Scriptable objects (items)
     public int goldDrop = 50;
     bool _isGameRunning = true;
+    UIIndicator uIIndicator;
     void Start () {
-
+        uIIndicator = FindObjectOfType<UIIndicator> ();
     }
     void OnDestroy () {
         if (_isGameRunning) {
-            GetComponent<UIIndicator> ().SpawnNewIndicator (transform.position, $"+{goldDrop}gold", false);
+            uIIndicator.SpawnNewIndicator (transform.position, $"+{goldDrop}gold", false);
             FindObjectOfType<GoldScript> ().Amount = goldDrop;
         }
     }

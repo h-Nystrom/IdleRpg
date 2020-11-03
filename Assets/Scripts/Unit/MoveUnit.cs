@@ -38,7 +38,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         unit.SetupUnit (OldParent, OldSiblingIndex);
         GetComponent<Unit> ().SetupUnit (lane.transform, SiblingIndex);
     }
-    void CalculateSiblingIndex (float mousePositionY, float lanePositionY) {
+    void CalculateSiblingIndex (float mousePositionY, float lanePositionY) { //Make it a public struct (used in 2 scripts)?
         if (mousePositionY == Mathf.Clamp (mousePositionY, lanePositionY - 20, lanePositionY + 20)) {
             SiblingIndex = 1;
         } else if (mousePositionY > lanePositionY + 20) {

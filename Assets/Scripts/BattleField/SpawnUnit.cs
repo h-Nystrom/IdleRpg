@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class SpawnUnit : MonoBehaviour {
     public GameObject unitPrefab;
-    public Transform IgnoreRaycastParent;
     public UnitType unitType;
     LaneManager laneManager;
 
+    public UnitScriptableObject[] unitTypes;
     //Scriptable units
     public enum UnitType {
         PlayerCommander,
@@ -21,14 +21,17 @@ public class SpawnUnit : MonoBehaviour {
     public void Spawning (int siblingPosition) {
         GameObject newUnit = Instantiate (unitPrefab, this.transform);
         if (unitType == UnitType.PlayerCommander) {
+            newUnit.GetComponent<Unit> ().SetupUnitType (unitTypes[0]);
             newUnit.GetComponent<FindTarget> ().attackLanes = laneManager.enemyLanes;
             newUnit.AddComponent<Commander> ();
+            newUnit.GetComponent<Commander> ().SetupWeapon (unitTypes[0].startingWeapon);
         }
         if (unitType == UnitType.EnemyUnit || unitType == UnitType.EnemyCommander) {
             newUnit.GetComponent<FindTarget> ().attackLanes = laneManager.playerLanes;
             Destroy (newUnit.GetComponent<MoveUnit> ());
             newUnit.AddComponent<SpawnLoot> ();
             if (unitType == UnitType.EnemyCommander) {
+                newUnit.GetComponent<Unit> ().SetupUnitType (unitTypes[1]);
                 newUnit.AddComponent<EnemyCommander> ();
                 newUnit.GetComponent<FindTarget> ().canAttack = false;
             } else {
@@ -38,7 +41,6 @@ public class SpawnUnit : MonoBehaviour {
                 button.onClick.AddListener (() => { commander.OnEnemyClick (newUnit.GetComponent<Unit> ()); });
             }
         }
-        newUnit.GetComponent<UIIndicator> ().ignoreRaycastParent = IgnoreRaycastParent;
         newUnit.GetComponent<Unit> ().SetupUnit (transform, siblingPosition);
     }
 }

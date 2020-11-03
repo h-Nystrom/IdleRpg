@@ -263,7 +263,6 @@ GameObject:
   - component: {fileID: 5404435879111011018}
   - component: {fileID: 1807010039901624678}
   - component: {fileID: 7443952536492138482}
-  - component: {fileID: 2909487061591130098}
   m_Layer: 5
   m_Name: Unit
   m_TagString: Unit
@@ -415,25 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f543fed383e3f44458f30688c334821a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 0}
-  parent: {fileID: 0}
-  IgnoreRaycastParent: {fileID: 0}
   draggingUnit: {fileID: 0}
   attackLanes: []
---- !u!114 &2909487061591130098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5986343429429627385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 121e51588e6336f4f993b4b3a59c4697, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IndicatorPrefab: {fileID: 4374427267689744567, guid: 0bc629547b0eecf43b911d1f7b3af005, type: 3}
-  ignoreRaycastParent: {fileID: 0}
 --- !u!1 &8981982221523347627
 GameObject:
   m_ObjectHideFlags: 0

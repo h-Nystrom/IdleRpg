@@ -5,17 +5,17 @@ public class UnitUIButtonSetup : MonoBehaviour {
 
     DraggingUnit draggingUnitScript;
     LaneManager laneManager;
-    const int maxIndex = 6; //Change to scriptableobject array here!
+    public UnitScriptableObject[] unitTypes = new UnitScriptableObject[maxIndex];
+    const int maxIndex = 6;
     void Awake () {
         laneManager = FindObjectOfType<LaneManager> ();
         draggingUnitScript = GetComponent<DraggingUnit> ();
         SetUpButtons ();
     }
-    void SetUpButtons () { //Add scriptable objects here!
-        for (int i = 0; i <= maxIndex; i++) {
+    void SetUpButtons () {
+        for (int i = 0; i < unitTypes.Length; i++) {
             BuyUnit UnitUIButton = Instantiate (UnitUIPrefab, this.transform);
-            UnitUIButton.draggingUnit = draggingUnitScript;
-            UnitUIButton.attackLanes = laneManager.enemyLanes;
+            UnitUIButton.Setup (unitTypes[i], laneManager.enemyLanes, draggingUnitScript);
         }
     }
 }
