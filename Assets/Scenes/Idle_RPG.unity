@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 75105524}
   - component: {fileID: 75105526}
   - component: {fileID: 75105527}
-  - component: {fileID: 75105529}
   m_Layer: 5
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -241,20 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsList: []
   maxUnits: 3
---- !u!114 &75105529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75105522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef44e6fba84a19747a8459902ace237f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
-  unitType: 2
 --- !u!1 &246226909
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +545,6 @@ GameObject:
   - component: {fileID: 825874676}
   - component: {fileID: 825874677}
   - component: {fileID: 825874678}
-  - component: {fileID: 825874679}
   m_Layer: 5
   m_Name: EnemyCommander
   m_TagString: Untagged
@@ -677,27 +661,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef44e6fba84a19747a8459902ace237f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
-  unitType: 1
---- !u!114 &825874679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825874672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1b87f7ff9aaed42a24efcb194bddb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  maxSpawnCount: 10
-  EnemyLanes:
-  - {fileID: 75105527}
-  - {fileID: 1343347902}
-  spawnRatePerLevel: 0a0000000500000003000000
-  spawnCountPerLevel: 04000000080000000c000000
+  unitPrefab: {fileID: -8528850314152864904, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
+  enemyCommanderArmySOs:
+  - {fileID: 11400000, guid: 916b54a310d5d6744a3a0193af6a95ab, type: 2}
+  - {fileID: 11400000, guid: 066202222acdb2a458e13ab798c3ef42, type: 2}
+  enemyLanes:
+  - {fileID: 75105523}
+  - {fileID: 1343347898}
+  commander: {fileID: 0}
 --- !u!1 &919542361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5487490498730723219, guid: 5f792ee0554f1584cb9b1b6a40b4ba84, type: 3}
@@ -948,7 +919,6 @@ GameObject:
   - component: {fileID: 1059762672}
   - component: {fileID: 1059762674}
   - component: {fileID: 1059762675}
-  - component: {fileID: 1059762676}
   - component: {fileID: 1059762677}
   m_Layer: 5
   m_Name: PlayerCommander
@@ -1054,20 +1024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsList: []
   maxUnits: 1
---- !u!114 &1059762676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059762670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef44e6fba84a19747a8459902ace237f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
-  unitType: 0
 --- !u!114 &1059762677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba13dbaff9e12e64284e608a85008474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitPrefab: {fileID: -8528850314152864904, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
+  CommanderUnitSO: {fileID: 11400000, guid: 2151f5732b48bfb4ca73c5c83c2ba010, type: 2}
 --- !u!1001 &1083487268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1215,6 +1173,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitUIPrefab: {fileID: 5841840487950555802, guid: b76f6cb6b60982f4d9a4fb94dc362f71, type: 3}
+  unitTypes:
+  - {fileID: 11400000, guid: 71041d522ebaa0149bdfe85d6c159a0f, type: 2}
+  - {fileID: 11400000, guid: 2aa284300994aed4681930f9d47e0493, type: 2}
+  - {fileID: 11400000, guid: 8fe9317666500094ab8ea98b0788c13b, type: 2}
+  - {fileID: 11400000, guid: 63e0a867c63fb474297e28934d3be7b4, type: 2}
+  - {fileID: 11400000, guid: 00ea2bb2e7c44a34d9c75b4e4cde41ff, type: 2}
+  - {fileID: 11400000, guid: a929fb78f0f64444a8755ce281b86b7d, type: 2}
 --- !u!1 &1231818643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1310,6 @@ GameObject:
   - component: {fileID: 1343347899}
   - component: {fileID: 1343347901}
   - component: {fileID: 1343347902}
-  - component: {fileID: 1343347903}
   m_Layer: 5
   m_Name: EnemyRange
   m_TagString: Untagged
@@ -1450,20 +1414,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsList: []
   maxUnits: 3
---- !u!114 &1343347903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343347897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef44e6fba84a19747a8459902ace237f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
-  unitType: 2
 --- !u!1 &1730826367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1642,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049863705}
     m_Modifications:
+    - target: {fileID: 5487490497284500416, guid: 5f792ee0554f1584cb9b1b6a40b4ba84, type: 3}
+      propertyPath: m_Name
+      value: ButtonText
+      objectReference: {fileID: 0}
     - target: {fileID: 5487490497284500422, guid: 5f792ee0554f1584cb9b1b6a40b4ba84, type: 3}
       propertyPath: m_text
       value: Items

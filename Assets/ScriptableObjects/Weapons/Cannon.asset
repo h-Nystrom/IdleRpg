@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dff75981311b7541ae06c75ede82cc4, type: 3}
   m_Name: Cannon
   m_EditorClassIdentifier: 
-  Damage: 0
-  CritChance: 0
-  AttackRate: 0
-  unitType: 0
+  damage: 10
+  critChance: 10
+  attackRate: 10
+  unitType: 1

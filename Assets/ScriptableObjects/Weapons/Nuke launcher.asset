@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dff75981311b7541ae06c75ede82cc4, type: 3}
   m_Name: Nuke launcher
   m_EditorClassIdentifier: 
-  Damage: 0
-  CritChance: 0
-  AttackRate: 0
-  unitType: 0
+  damage: 500
+  critChance: 50
+  attackRate: 30
+  unitType: 2

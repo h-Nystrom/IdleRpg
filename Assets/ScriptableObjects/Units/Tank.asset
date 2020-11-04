@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bc117cfb5ee054087c4858c3b615fc, type: 3}
   m_Name: Tank
   m_EditorClassIdentifier: 
-  health: 0
-  price: 0
+  health: 100
+  blockChance: 5
+  price: 50
+  unitType: 1
+  startingWeapon: {fileID: 11400000, guid: fec33b44e966c194dbaeb32146f39a05, type: 2}

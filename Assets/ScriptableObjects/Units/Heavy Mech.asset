@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bc117cfb5ee054087c4858c3b615fc, type: 3}
   m_Name: Heavy Mech
   m_EditorClassIdentifier: 
-  health: 0
-  price: 0
+  health: 1000
+  blockChance: 20
+  price: 5000
+  unitType: 2
+  startingWeapon: {fileID: 11400000, guid: 1b2938dfd9a5cdc4dbbfbb8b5ba2cbe8, type: 2}

@@ -10,6 +10,7 @@ public class Commander : MonoBehaviour {
     UIIndicator uIIndicator;
     public void SetupWeapon (WeaponScriptableObject weapon) {
         this.damage = weapon.damage;
+        GetComponentInParent<Lane> ().UpdateLane ();
     }
     public void OnEnemyClick (Unit unitTarget) {
         uIIndicator.SpawnNewIndicator (Input.mousePosition + new Vector3 (Random.Range (-10, 10), Random.Range (-10, 10), 0), $"-{damage}", true);

@@ -2,45 +2,46 @@
 using UnityEngine.UI;
 
 public class SpawnUnit : MonoBehaviour {
-    public GameObject unitPrefab;
-    public UnitType unitType;
+    public Unit unitPrefab;
+    public EnemyCommanderArmyScriptableObject[] enemyCommanderArmySOs;
+    public Transform[] enemyLanes;
     LaneManager laneManager;
-
-    public UnitScriptableObject[] unitTypes;
-    //Scriptable units
-    public enum UnitType {
-        PlayerCommander,
-        EnemyCommander,
-        EnemyUnit
-
-    }
+    [HideInInspector]
+    public Commander commander;
+    int level;
     void Start () {
         laneManager = FindObjectOfType<LaneManager> ();
+        SpawnEnemyCommander ();
     }
-    //Change later to scriptable object
-    public void Spawning (int siblingPosition) {
-        GameObject newUnit = Instantiate (unitPrefab, this.transform);
-        if (unitType == UnitType.PlayerCommander) {
-            newUnit.GetComponent<Unit> ().SetupUnitType (unitTypes[0]);
-            newUnit.GetComponent<FindTarget> ().attackLanes = laneManager.enemyLanes;
-            newUnit.AddComponent<Commander> ();
-            newUnit.GetComponent<Commander> ().SetupWeapon (unitTypes[0].startingWeapon);
-        }
-        if (unitType == UnitType.EnemyUnit || unitType == UnitType.EnemyCommander) {
+    void SpawnLoop (Transform spawnLane, UnitScriptableObject[] enemyUnits) {
+        foreach (UnitScriptableObject unitSO in enemyUnits) {
+            if (unitSO == null)
+                return;
+            Unit newUnit = Instantiate (unitPrefab, this.transform);
+            Button button = newUnit.gameObject.AddComponent<Button> ();
+            button.transition = Selectable.Transition.None;
+            button.onClick.AddListener (() => { commander.OnEnemyClick (newUnit); });
             newUnit.GetComponent<FindTarget> ().attackLanes = laneManager.playerLanes;
             Destroy (newUnit.GetComponent<MoveUnit> ());
-            newUnit.AddComponent<SpawnLoot> ();
-            if (unitType == UnitType.EnemyCommander) {
-                newUnit.GetComponent<Unit> ().SetupUnitType (unitTypes[1]);
-                newUnit.AddComponent<EnemyCommander> ();
-                newUnit.GetComponent<FindTarget> ().canAttack = false;
-            } else {
-                Commander commander = FindObjectOfType<Commander> ();
-                Button button = newUnit.AddComponent<Button> ();
-                button.transition = Selectable.Transition.None;
-                button.onClick.AddListener (() => { commander.OnEnemyClick (newUnit.GetComponent<Unit> ()); });
-            }
+            newUnit.gameObject.AddComponent<SpawnLoot> ();
+            newUnit.SetupUnitType (unitSO);
+            newUnit.SetupWeapon (unitSO.startingWeapon);
+            newUnit.UpdateUnitLane (spawnLane.transform, 0);
         }
-        newUnit.GetComponent<Unit> ().SetupUnit (transform, siblingPosition);
+    }
+    public void SpawningEnemyUnits (UnitScriptableObject[] enemyUnitsInFirstLane, UnitScriptableObject[] enemyUnitsInSecondLane) {
+        SpawnLoop (enemyLanes[0], enemyUnitsInFirstLane);
+        SpawnLoop (enemyLanes[1], enemyUnitsInSecondLane);
+    }
+    public void SpawnEnemyCommander () {
+        Unit newUnit = Instantiate (unitPrefab, this.transform);
+        Destroy (newUnit.GetComponent<MoveUnit> ());
+        newUnit.GetComponent<Unit> ().SetupUnitType (enemyCommanderArmySOs[level].enemyCommander);
+        newUnit.gameObject.AddComponent<EnemyCommander> ();
+        newUnit.GetComponent<FindTarget> ().canAttack = false;
+        newUnit.UpdateUnitLane (transform, 0);
+        SpawningEnemyUnits (enemyCommanderArmySOs[level].unitsInFirstLane, enemyCommanderArmySOs[level].unitsInSecondLane);
+        if (level < enemyCommanderArmySOs.Length - 1)
+            level++;
     }
 }

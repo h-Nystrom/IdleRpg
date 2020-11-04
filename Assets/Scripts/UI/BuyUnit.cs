@@ -52,7 +52,7 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
 
         if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane" && !eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
             CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
-            newUnit.GetComponent<Unit> ().SetupUnit (eventData.pointerEnter.transform, SiblingIndex);
+            newUnit.GetComponent<Unit> ().UpdateUnitLane (eventData.pointerEnter.transform, SiblingIndex);
             PurchaseUnit ();
         } else {
             Destroy (newUnit);

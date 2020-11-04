@@ -11,10 +11,6 @@ public class EnemySpawner : MonoBehaviour {
     int spawnCount;
     float spawnTimer;
 
-    public void SpawnNewEnemyCommander () {
-        LevelUp ();
-        GetComponent<SpawnUnit> ().Spawning (0);
-    }
     void LevelUp () {
         level++;
         if (level < spawnRatePerLevel.Length) {
@@ -29,16 +25,13 @@ public class EnemySpawner : MonoBehaviour {
             foreach (Lane lane in EnemyLanes) {
                 if (!lane.IsFull) {
                     spawnCount++;
-                    lane.GetComponent<SpawnUnit> ().Spawning (lane.unitsList.Count - 1);
+                    //lane.GetComponent<SpawnUnit> ().SpawningEnemyUnits(lane.unitsList.Count - 1);
                     spawnTimer = Time.time;
                     break;
                 }
             }
             spawnTimer = Time.time;
         }
-    }
-    void Start () {
-        SpawnNewEnemyCommander ();
     }
     void Update () {
         CanSpawnUnit ();

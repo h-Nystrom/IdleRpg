@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0bc117cfb5ee054087c4858c3b615fc, type: 3}
-  m_Name: GlassCannon
+  m_Name: Sniper
   m_EditorClassIdentifier: 
-  health: 0
-  price: 0
+  health: 100
+  blockChance: 5
+  price: 1000
+  unitType: 0
+  startingWeapon: {fileID: 11400000, guid: 0e1a7f44430ba654e9fd67adb12ad6cf, type: 2}

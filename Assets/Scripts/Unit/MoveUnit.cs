@@ -26,7 +26,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
                 SwitchUnits (eventData.pointerEnter.GetComponent<Lane> (), OldSiblingIndex);
             } else {
                 CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
-                GetComponent<Unit> ().SetupUnit (eventData.pointerEnter.transform, SiblingIndex);
+                GetComponent<Unit> ().UpdateUnitLane (eventData.pointerEnter.transform, SiblingIndex);
             }
         } else {
             ResetUnitPosition ();
@@ -35,8 +35,8 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     }
     void SwitchUnits (Lane lane, int OldSiblingIndex) {
         Unit unit = lane.unitsList[SiblingIndex];
-        unit.SetupUnit (OldParent, OldSiblingIndex);
-        GetComponent<Unit> ().SetupUnit (lane.transform, SiblingIndex);
+        unit.UpdateUnitLane (OldParent, OldSiblingIndex);
+        GetComponent<Unit> ().UpdateUnitLane (lane.transform, SiblingIndex);
     }
     void CalculateSiblingIndex (float mousePositionY, float lanePositionY) { //Make it a public struct (used in 2 scripts)?
         if (mousePositionY == Mathf.Clamp (mousePositionY, lanePositionY - 20, lanePositionY + 20)) {
@@ -49,7 +49,7 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         }
     }
     void ResetUnitPosition () {
-        GetComponent<Unit> ().SetupUnit (OldParent, SiblingIndex);
+        GetComponent<Unit> ().UpdateUnitLane (OldParent, SiblingIndex);
     }
     void Start () {
         draggingUnit = FindObjectOfType<DraggingUnit> ();

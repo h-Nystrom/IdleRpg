@@ -38,7 +38,7 @@ public class Unit : MonoBehaviour {
         }
     }
 
-    public void SetupUnit (Transform parentLane, int index) {
+    public void UpdateUnitLane (Transform parentLane, int index) {
         this.parentLane = parentLane;
         transform.SetParent (this.parentLane);
         transform.SetSiblingIndex (index);

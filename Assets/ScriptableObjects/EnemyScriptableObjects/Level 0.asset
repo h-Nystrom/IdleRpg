@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fecf0651833a634c89b5cc0376baa92, type: 3}
+  m_Name: Level 0
+  m_EditorClassIdentifier: 
+  enemyCommander: {fileID: 11400000, guid: 02541b02acfd69345959e70fb72096be, type: 2}
+  unitsInFirstLane:
+  - {fileID: 11400000, guid: 71041d522ebaa0149bdfe85d6c159a0f, type: 2}
+  - {fileID: 11400000, guid: 71041d522ebaa0149bdfe85d6c159a0f, type: 2}
+  - {fileID: 0}
+  unitsInSecondLane:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
