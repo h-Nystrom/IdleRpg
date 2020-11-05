@@ -37,8 +37,8 @@ public class Unit : MonoBehaviour {
         transform.SetSiblingIndex (index);
         GetComponent<CanvasGroup> ().blocksRaycasts = true;
         parentLane.GetComponent<LaneChecker> ().AddUnit (this, index);
-        if (GetComponent<FindTarget> () != null)
-            GetComponent<FindTarget> ().Setup (this.parentLane.GetComponent<LaneChecker> ());
+        //if (GetComponent<FindTarget> () != null)
+        GetComponent<FindTarget> ()?.Setup (this.parentLane.GetComponent<LaneChecker> ());
     }
     public void TakeDamage (int damage, int crit) {
         if (IsAlive) {
@@ -53,10 +53,10 @@ public class Unit : MonoBehaviour {
     }
     void OnDestroy () {
         if (_isGameRunning) {
-            if (parentLane != null) {
-                parentLane.GetComponent<LaneChecker> ().RemoveUnit (this);
-                attackManagerSO.UpdateAttackTarget ();
-            }
+            //if (parentLane != null) {
+            parentLane.GetComponent<LaneChecker> ()?.RemoveUnit (this);
+            attackManagerSO.UpdateAttackTarget ();
+            //}
         }
     }
     void OnApplicationQuit () {

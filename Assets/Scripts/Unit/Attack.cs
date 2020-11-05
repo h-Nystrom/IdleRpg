@@ -40,12 +40,12 @@ public class Attack : MonoBehaviour {
             chargingAttack = Time.time;
         }
     }
-    void Start () {
-        uiIndicator = FindObjectOfType<UIIndicator> ();
-    }
     void Update () {
         if (HasTarget) {
             ChargingAttack ();
         }
+    }
+    void Start () {
+        uiIndicator = FindObjectOfType<UIIndicator> ();
     }
 }
