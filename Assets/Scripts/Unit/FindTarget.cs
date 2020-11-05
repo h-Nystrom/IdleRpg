@@ -1,41 +1,51 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent (typeof (Unit))]
 public class FindTarget : MonoBehaviour {
     public GameObject enemy;
-    public Lane[] attackLanes;
-    public bool canAttack = true;
-    public int positionIndex;
-    int myLaneLength;
-
-    public void UpdateTarget (int positionIndex, int myLaneLength) {
-        this.positionIndex = positionIndex;
-        this.myLaneLength = myLaneLength;
-        if (canAttack)
-            FindNextTarget ();
+    public LaneChecker[] attackLanes;
+    [SerializeField] AttackManagerSO attackManagerSO;
+    [SerializeField] int positionIndex;
+    [SerializeField] int myLaneLength;
+    LaneChecker myCurrentLane;
+    public void Setup (LaneChecker myCurrentLane) {
+        this.myCurrentLane = myCurrentLane;
     }
-    void FindNextTarget () {
-        foreach (Lane lane in attackLanes) {
-            if (lane.unitsList.Count > 0) {
+    public void FindNextTarget () {
+        if (myCurrentLane == null || !GetComponent<Unit> ().IsAlive)
+            return;
+        myLaneLength = myCurrentLane.unitsInLane.Count;
+        positionIndex = myCurrentLane.unitsInLane.IndexOf (GetComponent<Unit> ());
+        enemy = null;
+        foreach (LaneChecker lane in attackLanes) {
+            if (lane.unitsInLane.Count > 0) {
                 enemy = FindClosestTargetInLane (lane);
                 break;
             }
         }
     }
-    GameObject FindClosestTargetInLane (Lane lane) {
-        if (lane.unitsList.Count - 1 >= positionIndex) {
-            if (positionIndex == 0 && myLaneLength == 1 && lane.unitsList.Count == 3) {
-                return lane.unitsList[1].gameObject;
-            } else if (lane.unitsList[positionIndex] != null) {
-                return lane.unitsList[positionIndex].gameObject;
+    GameObject FindClosestTargetInLane (LaneChecker lane) {
+
+        if (lane.unitsInLane.Count - 1 >= positionIndex) {
+            if (positionIndex == 0 && myLaneLength == 1 && lane.unitsInLane.Count == 3) {
+                return lane.unitsInLane[1].gameObject;
+            } else if (lane.unitsInLane[positionIndex] != null) {
+                return lane.unitsInLane[positionIndex].gameObject;
             } else {
-                return lane.unitsList[lane.unitsList.Count - 1].gameObject;
+                return lane.unitsInLane[lane.unitsInLane.Count - 1].gameObject;
             }
         } else {
-            return lane.unitsList[lane.unitsList.Count - 1].gameObject;
+            return lane.unitsInLane[lane.unitsInLane.Count - 1].gameObject;
         }
     }
-    void Start () {
-        FindObjectsOfType<Lane> ();
+    void FindTargetEvent (AttackManagerSO attackManagerSO) {
+        FindNextTarget ();
+    }
+    void Awake () {
+        attackManagerSO.ChangeTargetEvent += FindTargetEvent;
+    }
+    void OnDestroy () {
+        attackManagerSO.ChangeTargetEvent -= FindTargetEvent;
     }
 }

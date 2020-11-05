@@ -3,27 +3,28 @@ using UnityEngine.EventSystems;
 
 public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
     public DraggingUnit draggingUnit;
-    public Lane[] attackLanes;
+    public AttackManagerSO attackManagerSO;
     Transform parent;
     Transform OldParent;
     int SiblingIndex;
     public void OnBeginDrag (PointerEventData eventData) {
         CalculateSiblingIndex (eventData.pointerEnter.transform.position.y, this.transform.parent.position.y);
         OldParent = this.transform.parent;
+        OldParent.GetComponent<LaneChecker> ().RemoveUnit (GetComponent<Unit> ());
         transform.SetParent (parent);
-        FindObjectOfType<LaneManager> ().UpdateLanes ();
         GetComponent<FindTarget> ().enemy = null;
         draggingUnit.IsDraggingUnit (true);
+        attackManagerSO.UpdateAttackTarget ();
     }
     public void OnDrag (PointerEventData eventData) {
         transform.position = eventData.position;
     }
     public void OnEndDrag (PointerEventData eventData) {
         if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane") {
-            if (eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
+            if (eventData.pointerEnter.GetComponent<LaneChecker> ().IsFull) {
                 int OldSiblingIndex = SiblingIndex;
                 CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
-                SwitchUnits (eventData.pointerEnter.GetComponent<Lane> (), OldSiblingIndex);
+                SwitchUnits (eventData.pointerEnter.GetComponent<LaneChecker> (), OldSiblingIndex);
             } else {
                 CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
                 GetComponent<Unit> ().UpdateUnitLane (eventData.pointerEnter.transform, SiblingIndex);
@@ -32,9 +33,11 @@ public class MoveUnit : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             ResetUnitPosition ();
         }
         draggingUnit.IsDraggingUnit (false);
+        attackManagerSO.UpdateAttackTarget ();
     }
-    void SwitchUnits (Lane lane, int OldSiblingIndex) {
-        Unit unit = lane.unitsList[SiblingIndex];
+    void SwitchUnits (LaneChecker lane, int OldSiblingIndex) {
+        Unit unit = lane.unitsInLane[SiblingIndex];
+        lane.RemoveUnit (unit);
         unit.UpdateUnitLane (OldParent, OldSiblingIndex);
         GetComponent<Unit> ().UpdateUnitLane (lane.transform, SiblingIndex);
     }

@@ -260,9 +260,10 @@ GameObject:
   - component: {fileID: 5986343429429627335}
   - component: {fileID: 1449781324832231722}
   - component: {fileID: -8528850314152864904}
-  - component: {fileID: 5404435879111011018}
   - component: {fileID: 1807010039901624678}
   - component: {fileID: 7443952536492138482}
+  - component: {fileID: 728069695243974172}
+  - component: {fileID: -5549891290841099187}
   m_Layer: 5
   m_Name: Unit
   m_TagString: Unit
@@ -353,35 +354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb93711da0e55574482a61522b95f052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: unit name
-  maxHealth: 100
-  blockChance: 10
-  unitType: 0
-  damage: 10
-  CritChance: 10
-  attackSpeed: 2
-  blockableAttack: 0
-  splash: 0
-  poisen: 0
   parentLane: {fileID: 0}
   nameTxt: {fileID: 4894813717651810950}
   healthBar: {fileID: 4673671614378003678}
---- !u!114 &5404435879111011018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5986343429429627385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3afecb0104831a94ab38d46b13e2b28f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
-  attackLanes: []
-  canAttack: 1
-  positionIndex: 0
+  attackManagerSO: {fileID: 11400000, guid: 96a12abbc5bc4374687629746b6bae83, type: 2}
 --- !u!114 &1807010039901624678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +391,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggingUnit: {fileID: 0}
+  attackManagerSO: {fileID: 11400000, guid: 96a12abbc5bc4374687629746b6bae83, type: 2}
+--- !u!114 &728069695243974172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986343429429627385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141316f7afe725e4f8dca4bc47e0925c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5549891290841099187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986343429429627385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afecb0104831a94ab38d46b13e2b28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
   attackLanes: []
+  attackManagerSO: {fileID: 11400000, guid: 96a12abbc5bc4374687629746b6bae83, type: 2}
 --- !u!1 &8981982221523347627
 GameObject:
   m_ObjectHideFlags: 0

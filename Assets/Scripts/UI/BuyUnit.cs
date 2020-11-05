@@ -9,7 +9,8 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     public TMP_Text weaponDamageText;
     public GameObject unitPrefab;
     public DraggingUnit draggingUnit;
-    public Lane[] attackLanes;
+    public LaneChecker[] attackLanes;
+    public AttackManagerSO attackManagerSO;
     UnitScriptableObject unitType;
     GameObject newUnit;
     GoldScript gold;
@@ -20,7 +21,7 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     bool CanBuyUnit {
         get => gold.Amount >= price;
     }
-    public void Setup (UnitScriptableObject unitType, Lane[] enemyLanes, DraggingUnit draggingUnit) {
+    public void Setup (UnitScriptableObject unitType, LaneChecker[] enemyLanes, DraggingUnit draggingUnit) {
         this.unitType = unitType;
         this.nameText.text = unitType.name;
         this.healthText.text = $"Hp: {unitType.health}";
@@ -29,11 +30,13 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
         this.weaponDamageText.text = unitType.startingWeapon.damage.ToString ();
         this.attackLanes = enemyLanes;
         this.draggingUnit = draggingUnit;
+        this.priceText.text = $"Price: {this.price}gold";
+        //Fix this code to scriptableObject?
         uiIndicator = FindObjectOfType<UIIndicator> ();
         gold = FindObjectOfType<GoldScript> ();
         draggingUnit = FindObjectOfType<DraggingUnit> ();
+        //
         parent = draggingUnit.draggableObjectParent;
-        priceText.text = $"Price: {this.price}gold";
     }
 
     public void OnBeginDrag (PointerEventData eventData) {
@@ -49,10 +52,10 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     public void OnEndDrag (PointerEventData eventData) {
         if (newUnit == null)
             return;
-
-        if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane" && !eventData.pointerEnter.GetComponent<Lane> ().IsFull) {
+        if (eventData.pointerEnter != null && eventData.pointerEnter.transform.tag == "CombatLane" && !eventData.pointerEnter.GetComponent<LaneChecker> ().IsFull) {
             CalculateSiblingIndex (eventData.position.y, eventData.pointerEnter.transform.position.y);
             newUnit.GetComponent<Unit> ().UpdateUnitLane (eventData.pointerEnter.transform, SiblingIndex);
+            attackManagerSO.UpdateAttackTarget ();
             PurchaseUnit ();
         } else {
             Destroy (newUnit);
@@ -75,10 +78,9 @@ public class BuyUnit : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     void InstatiateUnit () {
         newUnit = Instantiate (unitPrefab, Input.mousePosition, Quaternion.identity, parent);
         newUnit.GetComponent<Unit> ().SetupUnitType (unitType);
-        newUnit.GetComponent<Unit> ().SetupWeapon (unitType.startingWeapon);
+        newUnit.GetComponent<Attack> ().SetupWeapon (unitType.startingWeapon);
+        newUnit.GetComponent<FindTarget> ().attackLanes = attackLanes;
         newUnit.AddComponent<IgnoreRayCast> ();
-        newUnit.GetComponent<FindTarget> ().attackLanes = this.attackLanes;
-        newUnit.GetComponent<FindTarget> ().enemy = null;
         draggingUnit.IsDraggingUnit (true);
     }
     void CalculateSiblingIndex (float mousePositionY, float lanePositionY) { //Make it a public struct (used in 2 scripts)?

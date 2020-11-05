@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0bc117cfb5ee054087c4858c3b615fc, type: 3}
-  m_Name: Enemy Commander
+  m_Script: {fileID: 11500000, guid: 91638a9e893a7354ab2b7c409aaf9ac1, type: 3}
+  m_Name: AttackManager
   m_EditorClassIdentifier: 
-  health: 50
-  blockChance: 5
-  price: 0
-  unitType: 0
-  startingWeapon: {fileID: 11400000, guid: fe9f1622af3b6f6488132ffe867d2828, type: 2}
+  test: 0

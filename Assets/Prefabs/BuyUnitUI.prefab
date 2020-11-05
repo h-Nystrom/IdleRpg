@@ -324,6 +324,7 @@ MonoBehaviour:
   unitPrefab: {fileID: 5986343429429627385, guid: ae4d7c22645c91948bdef0882396d298, type: 3}
   draggingUnit: {fileID: 0}
   attackLanes: []
+  attackManagerSO: {fileID: 11400000, guid: 96a12abbc5bc4374687629746b6bae83, type: 2}
 --- !u!1 &4679707218934991398
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
 public class EnemyCommander : MonoBehaviour {
+    [HideInInspector] public SpawnEnemyUnits spawnEnemyUnits;
     bool _isGameRunning = true;
     void OnDestroy () {
         if (_isGameRunning) {
-            FindObjectOfType<SpawnUnit> ().SpawnEnemyCommander ();
+            spawnEnemyUnits.Invoke ("SpawnEnemyCommander", 2f);
         }
     }
     void OnApplicationQuit () {
