@@ -1,36 +1,37 @@
 ﻿using System;
+using Clicker.ResourceProduction;
 using UnityEngine;
 
 namespace Clicker {
     [Serializable]
     public class Purchasable {
         public TMPro.TMP_Text buttonLabel;
-        ResourceProduction.Data data;
-        ResourcesIdleClicker.Resource resource;
+        Data data;
         string productId;
-
-        bool IsAffordable => this.resource.Amount >= this.data.GetActualCosts (this.Amount);
+        bool IsAffordable => this.data.GetActualCosts (this.Amount).IsAffordable;
 
         public int Amount {
             get => PlayerPrefs.GetInt (this.data.name + "_" + this.productId, 0);
             private set => PlayerPrefs.SetInt (this.data.name + "_" + this.productId, value);
         }
-
-        public void SetUp (ResourceProduction.Data data, ResourcesIdleClicker.Resource resource, string productId) {
+        public void SetUp (Data data, string productId) {
             this.data = data;
-            this.resource = resource;
             this.productId = productId;
-            this.buttonLabel.text = $"Add {productId} for {data.GetActualCosts(this.Amount)} {resource.name}";
+            if (productId == "Upgrade" && Amount == 0)
+                Amount++;
+            UpdateCostLabel ();
         }
-
         public void Purchase () {
             if (!this.IsAffordable)
                 return;
-            this.resource.Amount -= this.data.GetActualCosts (this.Amount);
+            this.data.GetActualCosts (this.Amount).Consume ();
             this.Amount += 1;
-            this.buttonLabel.text = $"Add {this.productId} for {this.data.GetActualCosts(this.Amount)} {this.resource.name}";
+            UpdateCostLabel ();
         }
-
+        void UpdateCostLabel () {
+            var updatedCost = this.data.GetActualCosts (this.Amount);
+            this.buttonLabel.text = $"{productId} {data.name} for {updatedCost.ToString ()}";
+        }
         public void Update () => UpdateTextColor ();
         void UpdateTextColor () => this.buttonLabel.color = this.IsAffordable ? Color.black : Color.red;
     }

@@ -1,24 +1,26 @@
-﻿  using UnityEngine;
-
+﻿  using Clicker.Resources;
+  using UnityEngine;
   namespace Clicker.ResourceProduction {
       [CreateAssetMenu (menuName = "Clicker/ResourceProduction/Data", fileName = "ResourceProductionData")] // "ResourceProductionData"
       public class Data : ScriptableObject {
-          [SerializeField] int costs = 100;
-          public ResourcesIdleClicker.Resource costsResource;
-          [SerializeField] float costMultiplier = 1.1f;
+
           public float productionTime = 1f;
-          [SerializeField] int productionAmount = 1;
-          public ResourcesIdleClicker.Resource productionResource;
+          [SerializeField] ResourceAmount costs;
+          [Range (1f, 2f)]
+          [SerializeField] float costMultiplier = 1.1f;
+          [SerializeField] ResourceAmount production;
+          [Range (1f, 2f)]
           [SerializeField] float productionMultiplier = 1.05f;
 
-          public int GetActualCosts (int amount) {
-              var result = this.costs * Mathf.Pow (this.costMultiplier, amount);
-              return Mathf.RoundToInt (result);
+          public ResourceAmount GetActualCosts (int amount) {
+              ResourceAmount result = this.costs;
+              result.amount = Mathf.RoundToInt (this.costs.amount * Mathf.Pow (this.costMultiplier, amount));
+              return result;
           }
-
-          public int GetProductionAmount (int upgradeAmount) {
-              var result = this.productionAmount * Mathf.Pow (this.productionMultiplier, upgradeAmount);
-              return Mathf.RoundToInt (result);
+          public ResourceAmount GetProductionAmount (int upgradeAmount, int unitCount) {
+              ResourceAmount result = this.production;
+              result.amount = Mathf.RoundToInt (production.amount * Mathf.Pow (this.productionMultiplier, upgradeAmount) * unitCount);
+              return result;
           }
       }
   }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a895d6693ab93348a186b6823da3ee5, type: 3}
-  m_Name: Foodmarket
+  m_Name: House
   m_EditorClassIdentifier: 
-  productionTime: 15
+  productionTime: 10
   costs:
-    resource: {fileID: 11400000, guid: 1be97784099a5094c9eb3f123b1c6f49, type: 2}
-    amount: 100
+    resource: {fileID: 11400000, guid: b82942532c5611441a8506814b381bbd, type: 2}
+    amount: 200
   costMultiplier: 1.1
   production:
-    resource: {fileID: 11400000, guid: ad9c41d852c854a4b94c0a9d644e5493, type: 2}
-    amount: 20
+    resource: {fileID: 11400000, guid: a3eb26ab814ec5e458e4a8a9068b3e2b, type: 2}
+    amount: 1
   productionMultiplier: 1.05

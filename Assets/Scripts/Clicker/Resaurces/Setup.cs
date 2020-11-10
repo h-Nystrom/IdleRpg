@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Clicker.ResourceProduction {
+namespace Clicker.Resources {
     public class Setup : MonoBehaviour {
-
-        public Data[] datas;
-
-        public ResourceProducer prefab;
+        public Clicker.Resources.Resource[] resources;
+        public Clicker.Resources.ResourceUI prefab;
 
         void Start () {
-            foreach (var productionUnit in this.datas) {
+            foreach (var productionUnit in this.resources) {
                 var instance = Instantiate (this.prefab, this.transform);
                 instance.SetUp (productionUnit);
             }

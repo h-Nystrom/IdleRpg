@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a895d6693ab93348a186b6823da3ee5, type: 3}
   m_Name: Farm
   m_EditorClassIdentifier: 
-  costs: 100
-  costsResource: {fileID: 11400000, guid: ad9c41d852c854a4b94c0a9d644e5493, type: 2}
+  productionTime: 5
+  costs:
+    resource: {fileID: 11400000, guid: ad9c41d852c854a4b94c0a9d644e5493, type: 2}
+    amount: 100
   costMultiplier: 1.1
-  productionTime: 1
-  productionAmount: 1
-  productionResource: {fileID: 11400000, guid: ad9c41d852c854a4b94c0a9d644e5493, type: 2}
+  production:
+    resource: {fileID: 11400000, guid: 1be97784099a5094c9eb3f123b1c6f49, type: 2}
+    amount: 10
   productionMultiplier: 1.05

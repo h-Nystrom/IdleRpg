@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
-namespace ResourcesIdleClicker {
+namespace Clicker.Resources {
     [CreateAssetMenu]
     public class Resource : ScriptableObject {
         public int amountPerClick = 5;
 
-        // increases the amount of this Resource
         public int Amount {
-            get => PlayerPrefs.GetInt (this.name, 1);
+            get => PlayerPrefs.GetInt (this.name, 0);
             set => PlayerPrefs.SetInt (this.name, value);
         }
 
