@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using Clicker.Resources;
+using UnityEngine;
 
 namespace Clicker.Resources {
     public class Setup : MonoBehaviour {
-        public Clicker.Resources.Resource[] resources;
-        public Clicker.Resources.ResourceUI prefab;
+        public Resource[] resources;
+        public ResourceUI prefab;
 
-        void Start () {
+        void Start() {
             foreach (var productionUnit in this.resources) {
-                var instance = Instantiate (this.prefab, this.transform);
-                instance.SetUp (productionUnit);
+                var instance = Instantiate(this.prefab, this.transform);
+                instance.SetUp(productionUnit);
             }
         }
     }

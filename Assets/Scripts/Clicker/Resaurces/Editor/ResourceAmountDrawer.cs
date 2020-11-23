@@ -1,11 +1,7 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
-#endif
+﻿using UnityEditor;
 using UnityEngine;
 
-namespace Clicker.Resources {
-    // TODO: Hint for exercise for property drawers
-#if UNITY_EDITOR
+namespace Clicker.Resources.Editor {
     [CustomPropertyDrawer (typeof (ResourceAmount))]
     public class ResourceAmountDrawer : PropertyDrawer {
         public override void OnGUI (Rect position, SerializedProperty property, GUIContent label) {
@@ -19,5 +15,4 @@ namespace Clicker.Resources {
             EditorGUI.EndProperty ();
         }
     }
-#endif 
 }

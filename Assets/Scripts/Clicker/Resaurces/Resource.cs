@@ -6,11 +6,11 @@ namespace Clicker.Resources {
         public int amountPerClick = 5;
 
         public int Amount {
-            get => PlayerPrefs.GetInt (this.name, 0);
-            set => PlayerPrefs.SetInt (this.name, value);
+            get => PlayerPrefs.GetInt(this.name, 0);
+            set => PlayerPrefs.SetInt(this.name, value);
         }
 
-        public void Produce () {
+        public void Produce() {
             this.Amount += this.amountPerClick;
         }
     }
